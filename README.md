@@ -1,8 +1,9 @@
 ## Donato Meoli
 
-Structured optimization at the **University of Pisa**: exploiting the block structure a large
-mathematical model already has, so that a decomposition method can solve what a monolithic
-solver cannot. Energy systems are where I put it to the test.
+Optimization at the **University of Pisa**. I work on how a problem is written down: restate a
+model in another formalism, or split it along structure it already has, and it stops being the
+thing no method could touch. Decomposition on one side, the bridge between symbolic and
+numerical AI on the other.
 
 → **[dmeoli.github.io](https://dmeoli.github.io)** · [CV](https://dmeoli.github.io/cv.pdf) · [GitLab](https://gitlab.com/dmeoli) · [LinkedIn](https://www.linkedin.com/in/donato-meoli/)
 
@@ -19,9 +20,9 @@ solver cannot. Energy systems are where I put it to the test.
 
 | | |
 |---|---|
-| [**SMS++**](https://smspp.gitlab.io/) | C++ framework for block-structured optimization. I wrote the exact DP solvers for the single-unit commitment problem, `SVMBlock`, `BranchAndXSolver`, `BendersDecompositionSolver`, `MultiStageStochasticBlock` and `ScenarioReductionSolver`. |
+| [**SMS++**](https://smspp.gitlab.io/) | C++ framework for block-structured optimization: a model is a tree of `Block`s, an algorithm is a `Solver` that attaches to one. I wrote the exact DP solvers for the single-unit commitment problem, `SVMBlock`, `BranchAndXSolver`, `BendersDecompositionSolver`, `MultiStageStochasticBlock` and `ScenarioReductionSolver`. |
 | [**aima-python**](https://github.com/aimacode/aima-python) | Fourth-most-active contributor to Russell & Norvig's reference code: CDCL SAT solving, AC3b/AC4/GAC, planning-as-search translators, SVMs, the missing 4th-edition algorithms. |
 | [**optiml**](https://github.com/dmeoli/optiml) | Optimizers, from line search to proximal bundle and interior point, wired to scikit-learn-compatible models trained with them. |
-| [**pypsa2smspp**](https://github.com/SPSUnipi/pypsa2smspp) · [**pySMSpp**](https://github.com/SPSUnipi/pySMSpp) | Bringing PyPSA energy models into SMS++, and driving SMS++ from Python. |
+| [**pypsa2smspp**](https://github.com/SPSUnipi/pypsa2smspp) · [**pySMSpp**](https://github.com/SPSUnipi/pySMSpp) | Driving SMS++ from Python, and importing models written elsewhere into it. |
 
 Also upstream in SciPy, HiGHS, qpsolvers, MCFClass, FastFlow and the COIN-OR conda-forge feedstocks.
