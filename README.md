@@ -5,7 +5,7 @@ model in another formalism, or split it along structure it already has, and it s
 thing no method could touch. Decomposition on one side, the bridge between symbolic and
 numerical AI on the other.
 
-→ **[dmeoli.github.io](https://dmeoli.github.io)** · [CV](https://dmeoli.github.io/cv.pdf) · [GitLab](https://gitlab.com/dmeoli) · [LinkedIn](https://www.linkedin.com/in/donato-meoli/)
+→ **[dmeoli.github.io](https://dmeoli.github.io)** · [CV](https://dmeoli.github.io/cv.pdf) · [ORCID](https://orcid.org/0009-0001-2500-2606) · [GitLab](https://gitlab.com/dmeoli) · [LinkedIn](https://www.linkedin.com/in/donato-meoli/)
 
 ### Publications
 
