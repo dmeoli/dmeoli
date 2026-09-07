@@ -1,4 +1,4 @@
-<img src="photo.jpg" align="right" width="160" alt="Donato Meoli">
+<img src="photo-round.png" align="right" width="160" alt="Donato Meoli">
 
 ## Donato Meoli
 
