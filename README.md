@@ -20,7 +20,7 @@ numerical AI on the other.
 
 | | |
 |---|---|
-| [**SMS++**](https://smspp.gitlab.io/) | C++ framework for block-structured optimization: a model is a tree of `Block`s, an algorithm is a `Solver` that attaches to one. I wrote the exact DP solvers for the single-unit commitment problem, `SVMBlock`, `BranchAndXSolver`, `BendersDecompositionSolver`, `MultiStageStochasticBlock` and `ScenarioReductionSolver`. |
+| [**SMS++**](https://smspp.gitlab.io/) | C++ framework for block-structured optimization: a model is a tree of `Block`s, an algorithm is a `Solver` that attaches to one. One of its two main maintainers, with Antonio Frangioni. `SVMBlock`, `TwoStageStochasticBlock`, `MultiStageStochasticBlock` and `BendersDecompositionSolver` are mine end to end; large parts of `UCBlock` (including the exact DP solvers for the single-unit commitment problem), of `BundleSolver`, `MILPSolver` and the core are as well. |
 | [**aima-python**](https://github.com/aimacode/aima-python) | Fourth-most-active contributor to Russell & Norvig's reference code: CDCL SAT solving, AC3b/AC4/GAC, planning-as-search translators, SVMs, the missing 4th-edition algorithms. |
 | [**optiml**](https://github.com/dmeoli/optiml) | Optimizers, from line search to proximal bundle and interior point, wired to scikit-learn-compatible models trained with them. |
 | [**pypsa2smspp**](https://github.com/SPSUnipi/pypsa2smspp) · [**pySMSpp**](https://github.com/SPSUnipi/pySMSpp) | Driving SMS++ from Python, and importing models written elsewhere into it. |
