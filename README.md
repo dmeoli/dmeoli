@@ -1,9 +1,11 @@
 ## Donato Meoli
 
-Optimization at the **University of Pisa**. I work on how a problem is written down: restate a
-model in another formalism, or split it along structure it already has, and it stops being the
-thing no method could touch. Decomposition on one side, the bridge between symbolic and
-numerical AI on the other.
+Optimization at the **University of Pisa**, coming from symbolic AI and working between the
+two. What holds them together is one idea: the difficulty of a problem lies in how it is
+written, so the useful move is to rewrite it, as a set of smaller problems or in a different
+formalism altogether. Knowledge representation and expert systems on one side, decomposition
+methods for large-scale optimization on the other, and learned heuristics inside exact solvers
+where the two meet.
 
 → **[dmeoli.github.io](https://dmeoli.github.io)** · [CV](https://dmeoli.github.io/cv.pdf) · [ORCID](https://orcid.org/0009-0001-2500-2606) · [GitLab](https://gitlab.com/dmeoli) · [LinkedIn](https://www.linkedin.com/in/donato-meoli/)
 
