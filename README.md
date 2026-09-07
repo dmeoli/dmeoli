@@ -1,3 +1,5 @@
+<img src="photo.jpg" align="right" width="160" alt="Donato Meoli">
+
 ## Donato Meoli
 
 Optimization at the **University of Pisa**. I work on how a problem is written down: restate a
