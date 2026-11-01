@@ -1,7 +1,7 @@
 # The parts of the README that come from GitHub, written again once a day:
-# the gists, the pull requests to the projects of others and the chart of
-# the languages [see scripts/profile.py], and the snake that eats the
-# contributions of the last year, on the branch output.
+# the gists and the chart of the languages [see scripts/profile.py], and
+# the snake that eats the contributions of the last year, on the branch
+# output.
 name: Profile
 
 on:

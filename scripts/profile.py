@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Writes the parts of the README of the profile that come from GitHub: the
-list of the public gists, the pull requests to the projects of others, and
-the chart of the languages of the public repositories (assets/, in a light
-and in a dark version). The README keeps everything else; each generated
-part sits between the markers <!-- NAME:start --> and <!-- NAME:end -->.
+list of the public gists, and the chart of the languages of the public
+repositories (assets/, in a light and in a dark version). The README
+keeps everything else; each generated part sits between the markers
+<!-- NAME:start --> and <!-- NAME:end -->.
 
 Usage: profile.py [README]
 GITHUB_TOKEN, if set, is used for the requests to the API of GitHub.
@@ -24,8 +24,6 @@ SKIP_REPOS = {'lemon-ng', 'homebrew-lemon-ng', 'dmeoli.github.io', USER}
 # languages whose bytes are not code written (outputs of notebooks, pages)
 SKIP_LANGS = {'Jupyter Notebook', 'HTML', 'CSS', 'SCSS'}
 TOP = 8
-# the projects of others listed by name, the ones with the most merged
-SHOWN = 6
 
 THEMES = {
     'light': {'bar': '#7a52c0', 'text': '#1f2328', 'muted': '#59636e',
@@ -35,14 +33,16 @@ THEMES = {
 }
 
 
-def get(path):
-    """The JSON of a GET to the API, following the pages of a list."""
+def get(path, auth=True):
+    """The JSON of a GET to the API, following the pages of a list; the
+    token of a workflow cannot read the gists, which are public anyway,
+    whence auth=False for them."""
     out, url = None, API + path
     while url:
         req = urllib.request.Request(url, headers={
             'Accept': 'application/vnd.github+json',
             'User-Agent': USER + '-profile'})
-        token = os.environ.get('GITHUB_TOKEN')
+        token = os.environ.get('GITHUB_TOKEN') if auth else None
         if token:
             req.add_header('Authorization', 'Bearer ' + token)
         with urllib.request.urlopen(req) as r:
@@ -110,7 +110,7 @@ def chart(langs, theme):
 
 def gists():
     lines = []
-    for g in get('/users/%s/gists?per_page=100' % USER):
+    for g in get('/users/%s/gists?per_page=100' % USER, auth=False):
         if not g['public']:
             continue
         desc = (g['description'] or '').strip()
@@ -119,45 +119,6 @@ def gists():
             name, rest = next(iter(g['files'])), desc
         lines.append('- [%s](%s): %s' % (name.strip(), g['html_url'],
                                          rest.strip()))
-    return '\n'.join(lines)
-
-
-def contributions():
-    """The projects of others with a pull request merged or open, those
-    with the most merged first."""
-    q = 'is:pr author:%s -user:%s' % (USER, USER)
-    found, page = [], 1
-    while True:   # the search gives 100 results a page, 1000 at most
-        items = get('/search/issues?per_page=100&page=%d&q=%s'
-                    % (page, urllib.request.quote(q)))['items']
-        found += items
-        if len(items) < 100 or page == 10:
-            break
-        page += 1
-    repos = {}
-    for pr in found:
-        name = pr['repository_url'].split('/repos/')[1]
-        merged = bool(pr.get('pull_request', {}).get('merged_at'))
-        m, o = repos.get(name, (0, 0))
-        if merged:
-            m += 1
-        elif pr['state'] == 'open':
-            o += 1
-        repos[name] = (m, o)
-    link = ('[%%s](https://github.com/%%s/pulls?q=is%%%%3Apr+author%%%%3A%s)'
-            % USER)
-    merged = sorted(((n, m, o) for n, (m, o) in repos.items() if m),
-                    key=lambda t: (-t[1], t[0].lower()))
-    lines = []
-    for name, m, o in merged[:SHOWN]:
-        lines.append('- %s: %d merged%s' % (link % (name, name), m,
-                                            ', %d open' % o if o else ''))
-    others = sum(1 for m, o in repos.values() if m or o) - \
-        len(merged[:SHOWN])
-    if others > 0:
-        lines.append('- and %d more projects, see [all the pull requests]'
-                     '(https://github.com/pulls?q=is%%3Apr+author%%3A%s'
-                     '+-user%%3A%s)' % (others, USER, USER))
     return '\n'.join(lines)
 
 
@@ -178,7 +139,6 @@ def main(argv):
     with open(readme) as f:
         text = f.read()
     text = put(text, 'gists', gists())
-    text = put(text, 'contributions', contributions())
     with open(readme, 'w') as f:
         f.write(text)
     return 0
