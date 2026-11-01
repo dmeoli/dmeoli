@@ -25,20 +25,11 @@ SKIP_REPOS = {'lemon-ng', 'homebrew-lemon-ng', 'dmeoli.github.io', USER}
 SKIP_LANGS = {'Jupyter Notebook', 'HTML', 'CSS', 'SCSS'}
 TOP = 8
 
-# the main projects, one wide card each, and the smaller tools, two cards
-# a row, in this order; a repository of another owner is owner/name
+# the main projects, then the smaller tools, two cards a row as the pinned
+# repositories, in this order; a repository of another owner is owner/name
 MAIN = ['SMSpp-Project/smspp-project', 'aimacode/aima-python', 'NeuroSAT',
         'SicilianNMT', 'lemon-ng', 'ADS', 'PBeFS', 'optiml']
 TOOLS = ['code-style', 'lamalunga', 'PESAD', 'FuzzyCLIPS', 'WNAffect']
-
-# what a card says in place of what GitHub has, where that is not right
-OVERRIDE = {
-    'SMSpp-Project/smspp-project': {
-        'name': 'SMS++', 'owner': '', 'language': 'C++',
-        'description': 'A framework for block-structured mathematical '
-                       'optimization, of which I am co-lead maintainer '
-                       'together with Antonio Frangioni'},
-}
 
 # the colors of the languages, as GitHub shows them (linguist)
 LANG_COLORS = {
@@ -260,29 +251,29 @@ def frame(w, h, c, k, kind, label):
 
 
 def card(repo, theme, k=0, kind='repo'):
-    """A card of a repository, in the layout of the pinned ones: wide, with
-    the owner and a larger name, for a main project."""
+    """A card of a repository, in the layout of the pinned ones: the owner
+    before the name for a repository of another, the description as
+    GitHub has it; a main project has a wider accent."""
     c = THEMES[theme]
-    main = kind == 'main'
-    w, h = (820, 110) if main else (400, 120)
+    w, h = 400, 120
     out = frame(w, h, c, k, kind, repo['name'])
-    out.append('<path transform="translate(16,%d)" fill="%s" d="%s"/>'
-               % (18 if main else 16, c['muted'], ICON_REPO))
+    out.append('<path transform="translate(16,16)" fill="%s" d="%s"/>'
+               % (c['muted'], ICON_REPO))
     x = 40
-    if main and repo.get('owner') and repo['owner'] != USER:
-        out.append('<text x="%d" y="31" font-size="16" fill="%s">%s/</text>'
+    if repo['owner'] != USER:
+        out.append('<text x="%d" y="29" font-size="14" fill="%s">%s/</text>'
                    % (x, c['muted'], escape(repo['owner'])))
-        x += 9 * (len(repo['owner']) + 1)
-    out.append('<text x="%d" y="%d" font-size="%d" font-weight="600" '
-               'fill="%s">%s</text>'
-               % (x, 31 if main else 29, 16 if main else 14, c['link'],
-                  escape(repo['name'])))
-    lines = wrap(repo.get('description') or '', 125 if main else 60, 2)
-    for i, line in enumerate(lines):
+        # the width of the owner, by the widths of the letters of the font
+        # at 14px: the narrow ones, the wide ones and the rest
+        x += sum(4 if ch in 'ijlrt-/.' else 11 if ch in 'mwMW' else
+                 9 if ch.isupper() else 7.5 for ch in repo['owner'] + '/')
+        x = round(x) + 2
+    out.append('<text x="%d" y="29" font-size="14" font-weight="600" '
+               'fill="%s">%s</text>' % (x, c['link'], escape(repo['name'])))
+    for i, line in enumerate(wrap(repo['description'], 60, 2)):
         out.append('<text x="16" y="%d" font-size="12" fill="%s">%s</text>'
-                   % ((54 if main else 54) + 18 * i, c['muted'],
-                      escape(line)))
-    out += footer(16, h - 16 if main else 100, c, repo.get('language'),
+                   % (54 + 18 * i, c['muted'], escape(line)))
+    out += footer(16, 100, c, repo['language'],
                   ((ICON_STAR, repo['stars']), (ICON_FORK, repo['forks'])))
     out += ['</g>', '</svg>']
     return '\n'.join(out) + '\n'
@@ -325,7 +316,7 @@ def write(root, path, svg):
 
 def repo_data(full):
     """The fields of a card of the repository owner/name (or name, of
-    USER), with OVERRIDE applied."""
+    USER), as GitHub has them."""
     key = full if '/' in full else '%s/%s' % (USER, full)
     r = get('/repos/' + key)
     data = {'name': r['name'], 'owner': r['owner']['login'],
@@ -333,13 +324,12 @@ def repo_data(full):
             'language': r.get('language') or '',
             'stars': r['stargazers_count'], 'forks': r['forks_count'],
             'url': r['html_url']}
-    data.update(OVERRIDE.get(key, {}))
     return data
 
 
 def cards(root, names, kind):
     """The cards of the repositories names, written in assets/cards, and
-    the markdown that shows them, one a row if main, else two."""
+    the markdown that shows them, two a row."""
     items = []
     for k, full in enumerate(names):
         repo = repo_data(full)
@@ -348,8 +338,8 @@ def cards(root, names, kind):
             write(root, 'assets/cards/%s-%s.svg' % (slug, theme),
                   card(repo, theme, k, kind))
         items.append(picture(repo['url'], 'assets/cards/' + slug,
-                             repo['name'], 820 if kind == 'main' else 400))
-    return ('\n<br>\n' if kind == 'main' else '\n').join(items)
+                             repo['name'], 400))
+    return '\n'.join(items)
 
 
 def gists(root):

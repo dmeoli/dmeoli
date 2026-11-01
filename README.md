@@ -1,21 +1,14 @@
 ### Projects
 
 <!-- main:start -->
-<a href="https://github.com/SMSpp-Project/smspp-project"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/SMSpp-Project-smspp-project-dark.svg"><img alt="SMS++" src="assets/cards/SMSpp-Project-smspp-project-light.svg" width="820"></picture></a>
-<br>
-<a href="https://github.com/aimacode/aima-python"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/aimacode-aima-python-dark.svg"><img alt="aima-python" src="assets/cards/aimacode-aima-python-light.svg" width="820"></picture></a>
-<br>
-<a href="https://github.com/dmeoli/NeuroSAT"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/NeuroSAT-dark.svg"><img alt="NeuroSAT" src="assets/cards/NeuroSAT-light.svg" width="820"></picture></a>
-<br>
-<a href="https://github.com/dmeoli/SicilianNMT"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/SicilianNMT-dark.svg"><img alt="SicilianNMT" src="assets/cards/SicilianNMT-light.svg" width="820"></picture></a>
-<br>
-<a href="https://github.com/dmeoli/lemon-ng"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/lemon-ng-dark.svg"><img alt="lemon-ng" src="assets/cards/lemon-ng-light.svg" width="820"></picture></a>
-<br>
-<a href="https://github.com/dmeoli/ADS"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/ADS-dark.svg"><img alt="ADS" src="assets/cards/ADS-light.svg" width="820"></picture></a>
-<br>
-<a href="https://github.com/dmeoli/PBeFS"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/PBeFS-dark.svg"><img alt="PBeFS" src="assets/cards/PBeFS-light.svg" width="820"></picture></a>
-<br>
-<a href="https://github.com/dmeoli/optiml"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/optiml-dark.svg"><img alt="optiml" src="assets/cards/optiml-light.svg" width="820"></picture></a>
+<a href="https://github.com/SMSpp-Project/smspp-project"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/SMSpp-Project-smspp-project-dark.svg"><img alt="smspp-project" src="assets/cards/SMSpp-Project-smspp-project-light.svg" width="400"></picture></a>
+<a href="https://github.com/aimacode/aima-python"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/aimacode-aima-python-dark.svg"><img alt="aima-python" src="assets/cards/aimacode-aima-python-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/NeuroSAT"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/NeuroSAT-dark.svg"><img alt="NeuroSAT" src="assets/cards/NeuroSAT-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/SicilianNMT"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/SicilianNMT-dark.svg"><img alt="SicilianNMT" src="assets/cards/SicilianNMT-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/lemon-ng"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/lemon-ng-dark.svg"><img alt="lemon-ng" src="assets/cards/lemon-ng-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/ADS"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/ADS-dark.svg"><img alt="ADS" src="assets/cards/ADS-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/PBeFS"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/PBeFS-dark.svg"><img alt="PBeFS" src="assets/cards/PBeFS-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/optiml"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/optiml-dark.svg"><img alt="optiml" src="assets/cards/optiml-light.svg" width="400"></picture></a>
 <!-- main:end -->
 
 ### Tools
