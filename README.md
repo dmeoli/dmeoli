@@ -1,15 +1,17 @@
 ### Software
 
-- [NeuroSAT](https://github.com/dmeoli/NeuroSAT), neuro-symbolic approaches to the SAT problem
-- [PESAD](https://github.com/dmeoli/PESAD), an expert system in Prolog for anxiety, obsessive-compulsive and trauma-related disorders
-- [WNAffect](https://github.com/dmeoli/WNAffect), the emotion of a word from WordNet Affect
-- [FuzzyCLIPS](https://github.com/dmeoli/FuzzyCLIPS), fuzzy logic for CLIPS, written in pure CLIPS
-- [SicilianNMT](https://github.com/dmeoli/SicilianNMT), neural machine translation between Sicilian, English and Italian
-- [lamalunga](https://github.com/dmeoli/lamalunga), a beamer theme and LaTeX library of golden proportions and colors computed from one primary
-- [code-style](https://github.com/dmeoli/code-style), a formatter for C++ and a check of pull requests that suggests the fixes on their lines
-- [lemon-ng](https://github.com/dmeoli/lemon-ng), a maintained fork of LEMON, the C++ library of graph and network optimization
-- [ADS](https://github.com/dmeoli/ADS), a header-only C++20 library of algorithms and data structures
-- [PBeFS](https://github.com/dmeoli/PBeFS), parallel best-first search in C++20
+<!-- cards:start -->
+<a href="https://github.com/dmeoli/NeuroSAT"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/NeuroSAT-dark.svg"><img alt="NeuroSAT" src="assets/cards/NeuroSAT-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/PESAD"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/PESAD-dark.svg"><img alt="PESAD" src="assets/cards/PESAD-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/lamalunga"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/lamalunga-dark.svg"><img alt="lamalunga" src="assets/cards/lamalunga-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/WNAffect"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/WNAffect-dark.svg"><img alt="WNAffect" src="assets/cards/WNAffect-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/FuzzyCLIPS"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/FuzzyCLIPS-dark.svg"><img alt="FuzzyCLIPS" src="assets/cards/FuzzyCLIPS-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/SicilianNMT"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/SicilianNMT-dark.svg"><img alt="SicilianNMT" src="assets/cards/SicilianNMT-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/code-style"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/code-style-dark.svg"><img alt="code-style" src="assets/cards/code-style-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/lemon-ng"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/lemon-ng-dark.svg"><img alt="lemon-ng" src="assets/cards/lemon-ng-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/ADS"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/ADS-dark.svg"><img alt="ADS" src="assets/cards/ADS-light.svg" width="400"></picture></a>
+<a href="https://github.com/dmeoli/PBeFS"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/PBeFS-dark.svg"><img alt="PBeFS" src="assets/cards/PBeFS-light.svg" width="400"></picture></a>
+<!-- cards:end -->
 
 ### Gists
 

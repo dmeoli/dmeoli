@@ -1,30 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="480" height="242" viewBox="0 0 480 242" role="img" aria-label="Languages of the public repositories, by share of bytes">
-<style>text{font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif} text{font-size:12px}.b{transform-box:fill-box;transform-origin:left;animation:grow .9s ease-out both}.p{animation:show .4s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes draw{from{transform:scaleY(0)}to{transform:scaleY(1)}}@keyframes show{from{opacity:0}to{opacity:1}}@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
 <text x="104" y="18" text-anchor="end" fill="#1f2328">C++</text>
-<rect x="112" y="9" width="312.0" height="12" rx="2" fill="#7a52c0"><title>C++: 87.4%</title></rect>
-<text x="430.0" y="18" fill="#59636e">87.4%</text>
+<rect class="b" style="animation-delay:0.00s" x="112" y="9" width="312.0" height="12" rx="2" fill="#7a52c0"><title>C++: 87.4%</title></rect>
+<text class="p" style="animation-delay:0.80s" x="430.0" y="18" fill="#59636e">87.4%</text>
 <text x="104" y="44" text-anchor="end" fill="#1f2328">Python</text>
-<rect x="112" y="35" width="19.5" height="12" rx="2" fill="#7a52c0"><title>Python: 5.5%</title></rect>
-<text x="137.5" y="44" fill="#59636e">5.5%</text>
+<rect class="b" style="animation-delay:0.10s" x="112" y="35" width="19.5" height="12" rx="2" fill="#7a52c0"><title>Python: 5.5%</title></rect>
+<text class="p" style="animation-delay:0.90s" x="137.5" y="44" fill="#59636e">5.5%</text>
 <text x="104" y="70" text-anchor="end" fill="#1f2328">TeX</text>
-<rect x="112" y="61" width="5.8" height="12" rx="2" fill="#7a52c0"><title>TeX: 1.6%</title></rect>
-<text x="123.8" y="70" fill="#59636e">1.6%</text>
+<rect class="b" style="animation-delay:0.20s" x="112" y="61" width="5.8" height="12" rx="2" fill="#7a52c0"><title>TeX: 1.6%</title></rect>
+<text class="p" style="animation-delay:1.00s" x="123.8" y="70" fill="#59636e">1.6%</text>
 <text x="104" y="96" text-anchor="end" fill="#1f2328">Prolog</text>
-<rect x="112" y="87" width="4.9" height="12" rx="2" fill="#7a52c0"><title>Prolog: 1.4%</title></rect>
-<text x="122.9" y="96" fill="#59636e">1.4%</text>
+<rect class="b" style="animation-delay:0.30s" x="112" y="87" width="4.9" height="12" rx="2" fill="#7a52c0"><title>Prolog: 1.4%</title></rect>
+<text class="p" style="animation-delay:1.10s" x="122.9" y="96" fill="#59636e">1.4%</text>
 <text x="104" y="122" text-anchor="end" fill="#1f2328">CLIPS</text>
-<rect x="112" y="113" width="4.9" height="12" rx="2" fill="#7a52c0"><title>CLIPS: 1.4%</title></rect>
-<text x="122.9" y="122" fill="#59636e">1.4%</text>
+<rect class="b" style="animation-delay:0.40s" x="112" y="113" width="4.9" height="12" rx="2" fill="#7a52c0"><title>CLIPS: 1.4%</title></rect>
+<text class="p" style="animation-delay:1.20s" x="122.9" y="122" fill="#59636e">1.4%</text>
 <text x="104" y="148" text-anchor="end" fill="#1f2328">Java</text>
-<rect x="112" y="139" width="4.0" height="12" rx="2" fill="#7a52c0"><title>Java: 0.9%</title></rect>
-<text x="122.0" y="148" fill="#59636e">0.9%</text>
+<rect class="b" style="animation-delay:0.50s" x="112" y="139" width="4.0" height="12" rx="2" fill="#7a52c0"><title>Java: 0.9%</title></rect>
+<text class="p" style="animation-delay:1.30s" x="122.0" y="148" fill="#59636e">0.9%</text>
 <text x="104" y="174" text-anchor="end" fill="#1f2328">Shell</text>
-<rect x="112" y="165" width="4.0" height="12" rx="2" fill="#7a52c0"><title>Shell: 0.6%</title></rect>
-<text x="122.0" y="174" fill="#59636e">0.6%</text>
+<rect class="b" style="animation-delay:0.60s" x="112" y="165" width="4.0" height="12" rx="2" fill="#7a52c0"><title>Shell: 0.6%</title></rect>
+<text class="p" style="animation-delay:1.40s" x="122.0" y="174" fill="#59636e">0.6%</text>
 <text x="104" y="200" text-anchor="end" fill="#1f2328">CMake</text>
-<rect x="112" y="191" width="4.0" height="12" rx="2" fill="#7a52c0"><title>CMake: 0.6%</title></rect>
-<text x="122.0" y="200" fill="#59636e">0.6%</text>
+<rect class="b" style="animation-delay:0.70s" x="112" y="191" width="4.0" height="12" rx="2" fill="#7a52c0"><title>CMake: 0.6%</title></rect>
+<text class="p" style="animation-delay:1.50s" x="122.0" y="200" fill="#59636e">0.6%</text>
 <text x="104" y="226" text-anchor="end" fill="#1f2328">Other</text>
-<rect x="112" y="217" width="4.0" height="12" rx="2" fill="#7a52c0"><title>Other: 0.6%</title></rect>
-<text x="122.0" y="226" fill="#59636e">0.6%</text>
+<rect class="b" style="animation-delay:0.80s" x="112" y="217" width="4.0" height="12" rx="2" fill="#7a52c0"><title>Other: 0.6%</title></rect>
+<text class="p" style="animation-delay:1.60s" x="122.0" y="226" fill="#59636e">0.6%</text>
 </svg>
