@@ -25,9 +25,20 @@ SKIP_REPOS = {'lemon-ng', 'homebrew-lemon-ng', 'dmeoli.github.io', USER}
 SKIP_LANGS = {'Jupyter Notebook', 'HTML', 'CSS', 'SCSS'}
 TOP = 8
 
-# the repositories of the section Software, one card each, in this order
-CARDS = ['NeuroSAT', 'PESAD', 'lamalunga', 'WNAffect', 'FuzzyCLIPS',
-         'SicilianNMT', 'code-style', 'lemon-ng', 'ADS', 'PBeFS']
+# the main projects, one wide card each, and the smaller tools, two cards
+# a row, in this order; a repository of another owner is owner/name
+MAIN = ['SMSpp-Project/smspp-project', 'aimacode/aima-python', 'NeuroSAT',
+        'SicilianNMT', 'lemon-ng', 'ADS', 'PBeFS', 'optiml']
+TOOLS = ['code-style', 'lamalunga', 'PESAD', 'FuzzyCLIPS', 'WNAffect']
+
+# what a card says in place of what GitHub has, where that is not right
+OVERRIDE = {
+    'SMSpp-Project/smspp-project': {
+        'name': 'SMS++', 'owner': '', 'language': 'C++',
+        'description': 'A framework for block-structured mathematical '
+                       'optimization, of which I am co-lead maintainer '
+                       'together with Antonio Frangioni'},
+}
 
 # the colors of the languages, as GitHub shows them (linguist)
 LANG_COLORS = {
@@ -53,6 +64,12 @@ ICON_STAR = ('M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1'
              '75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698'
              ' 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.09'
              '6-.45a.75.75 0 0 1-.564-.41L8 2.694Z')
+ICON_CODE = ('m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 '
+             '0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.7'
+             '49.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.7'
+             '51 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.'
+             '749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.'
+             '75 0 0 1 0-1.06Z')
 ICON_FORK = ('M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.8'
              '78a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2'
              '.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25'
@@ -179,90 +196,188 @@ def wrap(text, width, lines):
     return out
 
 
-def card(repo, theme, k=0):
-    """A card of a repository, in the layout of the pinned ones, the k-th
-    of the list coming in a little after the one before it."""
-    c = THEMES[theme]
-    w, h = 400, 120
-    lang = repo.get('language') or ''
-    delay = 0.12 * k
-    out = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" '
-           'viewBox="0 0 %d %d" role="img" aria-label="%s">'
-           % (w, h, w, h, escape(repo['name'])),
-           '<style>%s.card{animation:rise .6s ease-out %.2fs both}'
-           '.accent{transform-box:fill-box;transform-origin:top;'
-           'animation:draw .7s ease-out %.2fs both}%s</style>'
-           % (FONT, delay, delay + 0.3, MOTION),
-           '<defs><linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">'
-           '<stop offset="0" stop-color="%s"/><stop offset="0.5" '
-           'stop-color="%s"/><stop offset="1" stop-color="%s"/>'
-           '<animateTransform attributeName="gradientTransform" '
-           'type="translate" values="0 -1;0 1" dur="6s" '
-           'repeatCount="indefinite"/></linearGradient></defs>' % c['glow'],
-           '<g class="card">',
-           '<rect x="0.5" y="0.5" width="%d" height="%d" rx="6" fill="%s" '
-           'stroke="%s"/>' % (w - 1, h - 1, c['bg'], c['border']),
-           '<rect class="accent" x="0.5" y="12" width="3" height="%d" '
-           'rx="1.5" fill="url(#glow)"/>' % (h - 24),
-           '<path transform="translate(16,16)" fill="%s" d="%s"/>'
-           % (c['muted'], ICON_REPO),
-           '<text x="40" y="29" font-size="14" font-weight="600" fill="%s">'
-           '%s</text>' % (c['link'], escape(repo['name']))]
-    for k, line in enumerate(wrap(repo.get('description') or '', 60, 2)):
-        out.append('<text x="16" y="%d" font-size="12" fill="%s">%s</text>'
-                   % (54 + 18 * k, c['muted'], escape(line)))
-    x, y = 16, 100
+def footer(x, y, c, lang, counts):
+    """The language with its dot, then each (icon, number) of counts that
+    is not zero, from x on the baseline y."""
+    out = []
     if lang:
         out.append('<circle cx="%d" cy="%d" r="6" fill="%s"/>'
                    % (x + 6, y - 4, LANG_COLORS.get(lang, c['muted'])))
         out.append('<text x="%d" y="%d" font-size="12" fill="%s">%s</text>'
                    % (x + 16, y, c['muted'], escape(lang)))
         x += 24 + 7 * len(lang)
-    for icon, n in ((ICON_STAR, repo['stargazers_count']),
-                    (ICON_FORK, repo['forks_count'])):
+    for icon, n in counts:
         if not n:
             continue
-        out.append('<path transform="translate(%d,%d)" fill="%s" d="%s"/>'
-                   % (x, y - 12, c['muted'], icon))
-        out.append('<text x="%d" y="%d" font-size="12" fill="%s">%d</text>'
-                   % (x + 20, y, c['muted'], n))
-        x += 32 + 7 * len(str(n))
-    out.append('</g>')
-    out.append('</svg>')
+        if icon:
+            out.append('<path transform="translate(%d,%d)" fill="%s" '
+                       'd="%s"/>' % (x, y - 12, c['muted'], icon))
+            out.append('<text x="%d" y="%d" font-size="12" fill="%s">%s'
+                       '</text>' % (x + 20, y, c['muted'], escape(str(n))))
+            x += 32 + 7 * len(str(n))
+        else:
+            out.append('<text x="%d" y="%d" font-size="12" fill="%s">%s'
+                       '</text>' % (x, y, c['muted'], escape(str(n))))
+            x += 16 + 7 * len(str(n))
+    return out
+
+
+def frame(w, h, c, k, kind, label):
+    """The head of the SVG of a card: its style and motion, the gradient
+    of its accent, the box and the accent, on the left of a repository and
+    on the top of a gist."""
+    delay = 0.12 * k
+    vertical = kind != 'gist'
+    out = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" '
+           'viewBox="0 0 %d %d" role="img" aria-label="%s">'
+           % (w, h, w, h, escape(label)),
+           '<style>%s.card{animation:rise .6s ease-out %.2fs both}'
+           '.accent{transform-box:fill-box;transform-origin:%s;'
+           'animation:%s .7s ease-out %.2fs both}'
+           '.mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,'
+           'Consolas,monospace}%s</style>'
+           % (FONT, delay, 'top' if vertical else 'left',
+              'draw' if vertical else 'grow', delay + 0.3, MOTION),
+           '<defs><linearGradient id="glow" x1="0" y1="0" x2="%d" y2="%d">'
+           '<stop offset="0" stop-color="%s"/><stop offset="0.5" '
+           'stop-color="%s"/><stop offset="1" stop-color="%s"/>'
+           '<animateTransform attributeName="gradientTransform" '
+           'type="translate" values="%s" dur="6s" repeatCount="indefinite"/>'
+           '</linearGradient></defs>'
+           % (((0, 1) if vertical else (1, 0)) + c['glow'] +
+              ('0 -1;0 1' if vertical else '-1 0;1 0',)),
+           '<g class="card">',
+           '<rect x="0.5" y="0.5" width="%d" height="%d" rx="6" fill="%s" '
+           'stroke="%s"/>' % (w - 1, h - 1, c['bg'], c['border'])]
+    if vertical:
+        out.append('<rect class="accent" x="0.5" y="12" width="%d" '
+                   'height="%d" rx="1.5" fill="url(#glow)"/>'
+                   % (4 if kind == 'main' else 3, h - 24))
+    else:
+        out.append('<rect class="accent" x="12" y="0.5" width="%d" '
+                   'height="3" rx="1.5" fill="url(#glow)"/>' % (w - 24))
+    return out
+
+
+def card(repo, theme, k=0, kind='repo'):
+    """A card of a repository, in the layout of the pinned ones: wide, with
+    the owner and a larger name, for a main project."""
+    c = THEMES[theme]
+    main = kind == 'main'
+    w, h = (820, 110) if main else (400, 120)
+    out = frame(w, h, c, k, kind, repo['name'])
+    out.append('<path transform="translate(16,%d)" fill="%s" d="%s"/>'
+               % (18 if main else 16, c['muted'], ICON_REPO))
+    x = 40
+    if main and repo.get('owner') and repo['owner'] != USER:
+        out.append('<text x="%d" y="31" font-size="16" fill="%s">%s/</text>'
+                   % (x, c['muted'], escape(repo['owner'])))
+        x += 9 * (len(repo['owner']) + 1)
+    out.append('<text x="%d" y="%d" font-size="%d" font-weight="600" '
+               'fill="%s">%s</text>'
+               % (x, 31 if main else 29, 16 if main else 14, c['link'],
+                  escape(repo['name'])))
+    lines = wrap(repo.get('description') or '', 125 if main else 60, 2)
+    for i, line in enumerate(lines):
+        out.append('<text x="16" y="%d" font-size="12" fill="%s">%s</text>'
+                   % ((54 if main else 54) + 18 * i, c['muted'],
+                      escape(line)))
+    out += footer(16, h - 16 if main else 100, c, repo.get('language'),
+                  ((ICON_STAR, repo['stars']), (ICON_FORK, repo['forks'])))
+    out += ['</g>', '</svg>']
     return '\n'.join(out) + '\n'
 
 
-def cards(root):
-    """The cards of CARDS, written in assets/cards, and the markdown that
-    shows them two per row, each linking to its repository."""
-    os.makedirs(os.path.join(root, 'assets', 'cards'), exist_ok=True)
+def gist_card(g, theme, k=0):
+    """A card of a gist: the code icon, the name in monospace as a file,
+    the accent on the top, the language and the number of files."""
+    c = THEMES[theme]
+    w, h = 400, 120
+    out = frame(w, h, c, k, 'gist', g['name'])
+    out.append('<path transform="translate(16,18)" fill="%s" d="%s"/>'
+               % (c['muted'], ICON_CODE))
+    out.append('<text class="mono" x="40" y="31" font-size="14" '
+               'font-weight="600" fill="%s">%s</text>'
+               % (c['link'], escape(g['name'])))
+    for i, line in enumerate(wrap(g['description'], 60, 2)):
+        out.append('<text x="16" y="%d" font-size="12" fill="%s">%s</text>'
+                   % (56 + 18 * i, c['muted'], escape(line)))
+    files = '%d file%s' % (g['files'], '' if g['files'] == 1 else 's')
+    out += footer(16, 100, c, g['language'],
+                  ((None, files), (None, 'updated ' + g['updated'])))
+    out += ['</g>', '</svg>']
+    return '\n'.join(out) + '\n'
+
+
+def picture(href, path, alt, width):
+    return ('<a href="%s"><picture><source media="(prefers-color-scheme: '
+            'dark)" srcset="%s-dark.svg"><img alt="%s" src="%s-light.svg" '
+            'width="%d"></picture></a>' % (href, path, escape(alt), path,
+                                           width))
+
+
+def write(root, path, svg):
+    full = os.path.join(root, path)
+    os.makedirs(os.path.dirname(full), exist_ok=True)
+    with open(full, 'w') as f:
+        f.write(svg)
+
+
+def repo_data(full):
+    """The fields of a card of the repository owner/name (or name, of
+    USER), with OVERRIDE applied."""
+    key = full if '/' in full else '%s/%s' % (USER, full)
+    r = get('/repos/' + key)
+    data = {'name': r['name'], 'owner': r['owner']['login'],
+            'description': r.get('description') or '',
+            'language': r.get('language') or '',
+            'stars': r['stargazers_count'], 'forks': r['forks_count'],
+            'url': r['html_url']}
+    data.update(OVERRIDE.get(key, {}))
+    return data
+
+
+def cards(root, names, kind):
+    """The cards of the repositories names, written in assets/cards, and
+    the markdown that shows them, one a row if main, else two."""
     items = []
-    for k, name in enumerate(CARDS):
-        repo = get('/repos/%s/%s' % (USER, name))
+    for k, full in enumerate(names):
+        repo = repo_data(full)
+        slug = full.replace('/', '-')
         for theme in THEMES:
-            with open(os.path.join(root, 'assets', 'cards', '%s-%s.svg'
-                                   % (name, theme)), 'w') as f:
-                f.write(card(repo, theme, k))
-        items.append(
-            '<a href="%s"><picture><source media="(prefers-color-scheme: '
-            'dark)" srcset="assets/cards/%s-dark.svg"><img alt="%s" '
-            'src="assets/cards/%s-light.svg" width="400"></picture></a>'
-            % (repo['html_url'], name, escape(name), name))
-    return '\n'.join(items)
+            write(root, 'assets/cards/%s-%s.svg' % (slug, theme),
+                  card(repo, theme, k, kind))
+        items.append(picture(repo['url'], 'assets/cards/' + slug,
+                             repo['name'], 820 if kind == 'main' else 400))
+    return ('\n<br>\n' if kind == 'main' else '\n').join(items)
 
 
-def gists():
-    lines = []
+def gists(root):
+    """The cards of the public gists, newest first, and their markdown."""
+    items = []
+    k = 0
     for g in get('/users/%s/gists?per_page=100' % USER, auth=False):
         if not g['public']:
             continue
         desc = (g['description'] or '').strip()
         name, _, rest = desc.partition(':')
+        files = list(g['files'].values())
         if not rest:
-            name, rest = next(iter(g['files'])), desc
-        lines.append('- [%s](%s): %s' % (name.strip(), g['html_url'],
-                                         rest.strip()))
-    return '\n'.join(lines)
+            name, rest = files[0]['filename'], desc
+        rest = rest.strip()
+        data = {'name': name.strip(), 'description': rest[:1].upper() +
+                rest[1:], 'files': len(files),
+                'language': next((f['language'] for f in files
+                                  if f.get('language') not in
+                                  (None, 'Markdown', 'Text', 'INI')), ''),
+                'updated': g['updated_at'][:7]}
+        for theme in THEMES:
+            write(root, 'assets/gists/%s-%s.svg' % (g['id'], theme),
+                  gist_card(data, theme, k))
+        items.append(picture(g['html_url'], 'assets/gists/' + g['id'],
+                             data['name'], 400))
+        k += 1
+    return '\n'.join(items)
 
 
 def put(text, name, body):
@@ -281,8 +396,9 @@ def main(argv):
             f.write(chart(langs, theme))
     with open(readme) as f:
         text = f.read()
-    text = put(text, 'cards', cards(root))
-    text = put(text, 'gists', gists())
+    text = put(text, 'main', cards(root, MAIN, 'main'))
+    text = put(text, 'tools', cards(root, TOOLS, 'repo'))
+    text = put(text, 'gists', gists(root))
     with open(readme, 'w') as f:
         f.write(text)
     return 0

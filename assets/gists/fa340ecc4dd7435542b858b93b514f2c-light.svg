@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120" viewBox="0 0 400 120" role="img" aria-label="sun-brightness">
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif}.card{animation:rise .6s ease-out 0.00s both}.accent{transform-box:fill-box;transform-origin:left;animation:grow .7s ease-out 0.30s both}.mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace}@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes draw{from{transform:scaleY(0)}to{transform:scaleY(1)}}@keyframes show{from{opacity:0}to{opacity:1}}@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
+<defs><linearGradient id="glow" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a52c0"/><stop offset="0.5" stop-color="#b39ddb"/><stop offset="1" stop-color="#7a52c0"/><animateTransform attributeName="gradientTransform" type="translate" values="-1 0;1 0" dur="6s" repeatCount="indefinite"/></linearGradient></defs>
+<g class="card">
+<rect x="0.5" y="0.5" width="399" height="119" rx="6" fill="#ffffff" stroke="#d1d9e0"/>
+<rect class="accent" x="12" y="0.5" width="376" height="3" rx="1.5" fill="url(#glow)"/>
+<path transform="translate(16,18)" fill="#59636e" d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"/>
+<text class="mono" x="40" y="31" font-size="14" font-weight="600" fill="#7a52c0">sun-brightness</text>
+<text x="16" y="56" font-size="12" fill="#59636e">Screen brightness (DDC/CI monitors and laptop panel) and</text>
+<text x="16" y="74" font-size="12" fill="#59636e">Night Light warmth that follow sunset and sunrise, with…</text>
+<circle cx="22" cy="96" r="6" fill="#3572A5"/>
+<text x="32" y="100" font-size="12" fill="#59636e">Python</text>
+<text x="82" y="100" font-size="12" fill="#59636e">4 files</text>
+<text x="147" y="100" font-size="12" fill="#59636e">updated 2026-10</text>
+</g>
+</svg>
