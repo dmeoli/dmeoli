@@ -25,11 +25,16 @@ SKIP_REPOS = {'lemon-ng', 'homebrew-lemon-ng', 'dmeoli.github.io', USER}
 SKIP_LANGS = {'Jupyter Notebook', 'HTML', 'CSS', 'SCSS'}
 TOP = 8
 
-# the main projects, then the smaller tools, two cards a row as the pinned
-# repositories, in this order; a repository of another owner is owner/name
+# the repositories shown, by their nature: the main projects (large, of
+# research, leading to papers), the earlier ones, and the tools; two cards
+# a row, in this order; a repository of another owner is owner/name. A new
+# repository goes in one of them if it is worth showing.
 MAIN = ['SMSpp-Project/smspp-project', 'aimacode/aima-python', 'NeuroSAT',
-        'SicilianNMT', 'lemon-ng', 'ADS', 'PBeFS', 'optiml']
-TOOLS = ['code-style', 'lamalunga', 'PESAD', 'FuzzyCLIPS', 'WNAffect']
+        'GQSAT', 'SicilianNMT', 'lemon-ng', 'ADS', 'PBeFS', 'optiml',
+        'SPSUnipi/pySMSpp', 'SPSUnipi/pypsa2smspp']
+EARLIER = ['WS4J', 'BeerEX', 'PESAD', 'WNAffect', 'FuzzyCLIPS',
+           'OnlineRetail']
+TOOLS = ['code-style', 'lamalunga']
 
 # the colors of the languages, as GitHub shows them (linguist)
 LANG_COLORS = {
@@ -387,6 +392,7 @@ def main(argv):
     with open(readme) as f:
         text = f.read()
     text = put(text, 'main', cards(root, MAIN, 'main'))
+    text = put(text, 'earlier', cards(root, EARLIER, 'repo'))
     text = put(text, 'tools', cards(root, TOOLS, 'repo'))
     text = put(text, 'gists', gists(root))
     with open(readme, 'w') as f:
