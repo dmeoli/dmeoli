@@ -1,0 +1,58 @@
+# The parts of the README that come from GitHub, written again once a day:
+# the gists, the pull requests to the projects of others and the chart of
+# the languages [see scripts/profile.py], and the snake that eats the
+# contributions of the last year, on the branch output.
+name: Profile
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile
+  cancel-in-progress: false
+
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write the generated parts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/profile.py README.md
+
+      - name: Commit them if they changed
+        run: |
+          git add README.md assets
+          git diff --cached --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "the generated parts of the profile, written again"
+          git push
+
+  snake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/snake-light.svg?palette=github-light&color_snake=#7a52c0&color_dots=#ebedf0,#e0d4f5,#bfa6e8,#9a78d6,#6b44b0
+            dist/snake-dark.svg?palette=github-dark&color_snake=#a98be0&color_dots=#161b22,#2e2440,#4f3a78,#7a52c0,#a98be0
+
+      - uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+          commit_message: the snake of the contributions, drawn again
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
