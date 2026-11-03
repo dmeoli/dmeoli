@@ -10,7 +10,5 @@
 <text x="16" y="74" font-size="12" fill="#59636e">on Linux, headless under systemd: detects frozen tunnels…</text>
 <circle cx="22" cy="96" r="6" fill="#89e051"/>
 <text x="32" y="100" font-size="12" fill="#59636e">Shell</text>
-<text x="75" y="100" font-size="12" fill="#59636e">4 files</text>
-<text x="140" y="100" font-size="12" fill="#59636e">updated 2026-10</text>
 </g>
 </svg>

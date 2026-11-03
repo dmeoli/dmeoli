@@ -311,7 +311,7 @@ def card(repo, theme, k=0, kind='projects'):
 
 def gist_card(g, theme, k=0):
     """A card of a gist: the code icon, the name in monospace as a file,
-    the accent on the top, the language and the number of files."""
+    the accent on the top and the language."""
     c = colors(theme, 'gist')
     w, h = 400, 120
     out = frame(w, h, c, k, 'gist', g['name'])
@@ -323,9 +323,7 @@ def gist_card(g, theme, k=0):
     for i, line in enumerate(wrap(g['description'], 60, 2)):
         out.append('<text x="16" y="%d" font-size="12" fill="%s">%s</text>'
                    % (56 + 18 * i, c['muted'], escape(line)))
-    files = '%d file%s' % (g['files'], '' if g['files'] == 1 else 's')
-    out += footer(16, 100, c, g['language'],
-                  ((None, files), (None, 'updated ' + g['updated'])))
+    out += footer(16, 100, c, g['language'], ())
     out += ['</g>', '</svg>']
     return '\n'.join(out) + '\n'
 
@@ -404,11 +402,10 @@ def gists(root):
             name, rest = files[0]['filename'], desc
         rest = rest.strip()
         data = {'name': name.strip(), 'description': rest[:1].upper() +
-                rest[1:], 'files': len(files),
+                rest[1:],
                 'language': next((f['language'] for f in files
                                   if f.get('language') not in
-                                  (None, 'Markdown', 'Text', 'INI')), ''),
-                'updated': g['updated_at'][:7]}
+                                  (None, 'Markdown', 'Text', 'INI')), '')}
         for theme in THEMES:
             write(root, 'assets/gists/%s-%s.svg' % (g['id'], theme),
                   gist_card(data, theme, k))
