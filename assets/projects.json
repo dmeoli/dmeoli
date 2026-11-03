@@ -6,6 +6,7 @@
     "en": "Projects",
     "it": "Progetti"
    },
+   "emoji": "🔬",
    "repos": [
     {
      "name": "smspp-project",
@@ -87,6 +88,7 @@
     "en": "Earlier projects",
     "it": "Progetti precedenti"
    },
+   "emoji": "🗃️",
    "repos": [
     {
      "name": "WS4J",
@@ -132,6 +134,7 @@
     "en": "Tools",
     "it": "Strumenti"
    },
+   "emoji": "🛠️",
    "repos": [
     {
      "name": "code-style",

@@ -87,6 +87,31 @@ THEMES = {
              'bg': 'none', 'glow': ('#7a52c0', '#d9cdf0', '#7a52c0')},
 }
 
+# the ground and the border of the cards of each section, a scale of the
+# purple from the projects to the earlier ones, and the gold of the gists,
+# so that a card stands out from the page and tells its section
+KINDS = {
+    'projects': {'light': ('#ece0fa', '#c9b2e8'),
+                 'dark': ('#2d2142', '#5b4683')},
+    'tools': {'light': ('#f2eafb', '#d6c6ee'),
+              'dark': ('#251d35', '#4a3c66')},
+    'earlier': {'light': ('#f6f2fa', '#e0d6ec'),
+                'dark': ('#1d1828', '#3b3350')},
+    'gist': {'light': ('#f9f3e3', '#e3d3a4'),
+             'dark': ('#272114', '#5e5132'),
+             'glow': ('#846f2d', '#e0c97f', '#846f2d')},
+}
+
+
+def colors(theme, kind):
+    """The colors of a card of the given section in the given theme."""
+    c = dict(THEMES[theme])
+    k = KINDS.get(kind)
+    if k:
+        c['bg'], c['border'] = k[theme]
+        c['glow'] = k.get('glow', c['glow'])
+    return c
+
 
 def get(path, auth=True):
     """The JSON of a GET to the API, following the pages of a list; the
@@ -250,18 +275,18 @@ def frame(w, h, c, k, kind, label):
     if vertical:
         out.append('<rect class="accent" x="0.5" y="12" width="%d" '
                    'height="%d" rx="1.5" fill="url(#glow)"/>'
-                   % (4 if kind == 'main' else 3, h - 24))
+                   % (4 if kind == 'projects' else 3, h - 24))
     else:
         out.append('<rect class="accent" x="12" y="0.5" width="%d" '
                    'height="3" rx="1.5" fill="url(#glow)"/>' % (w - 24))
     return out
 
 
-def card(repo, theme, k=0, kind='repo'):
+def card(repo, theme, k=0, kind='projects'):
     """A card of a repository, in the layout of the pinned ones: the owner
     before the name for a repository of another, the description as
     GitHub has it; a main project has a wider accent."""
-    c = THEMES[theme]
+    c = colors(theme, kind)
     w, h = 400, 120
     out = frame(w, h, c, k, kind, repo['name'])
     out.append('<path transform="translate(16,16)" fill="%s" d="%s"/>'
@@ -287,7 +312,7 @@ def card(repo, theme, k=0, kind='repo'):
 def gist_card(g, theme, k=0):
     """A card of a gist: the code icon, the name in monospace as a file,
     the accent on the top, the language and the number of files."""
-    c = THEMES[theme]
+    c = colors(theme, 'gist')
     w, h = 400, 120
     out = frame(w, h, c, k, 'gist', g['name'])
     out.append('<path transform="translate(16,18)" fill="%s" d="%s"/>'
@@ -341,7 +366,7 @@ def software(root):
         spec = yaml.safe_load(f)
     md, data = [], []
     for sec in spec['sections']:
-        kind = 'main' if sec['id'] == 'projects' else 'repo'
+        kind = sec['id']
         items, entries = [], []
         for k, entry in enumerate(sec['repos']):
             if isinstance(entry, str):
@@ -356,8 +381,10 @@ def software(root):
             entries.append({'name': repo['name'], 'url': repo['url'],
                             'card': 'assets/cards/' + slug,
                             'note': entry.get('note')})
-        md.append('### %s\n\n%s' % (sec['title']['en'], '\n'.join(items)))
+        md.append('### %s %s\n\n%s' % (sec['emoji'], sec['title']['en'],
+                                        '\n'.join(items)))
         data.append({'id': sec['id'], 'title': sec['title'],
+                     'emoji': sec['emoji'],
                      'repos': entries})
     write(root, 'assets/projects.json',
           json.dumps({'sections': data}, indent=1, ensure_ascii=False) +

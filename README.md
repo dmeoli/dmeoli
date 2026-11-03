@@ -1,5 +1,5 @@
 <!-- software:start -->
-### Projects
+### 🔬 Projects
 
 <a href="https://github.com/SMSpp-Project/smspp-project"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/SMSpp-Project-smspp-project-dark.svg"><img alt="smspp-project" src="assets/cards/SMSpp-Project-smspp-project-light.svg" width="400"></picture></a>
 <a href="https://github.com/aimacode/aima-python"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/aimacode-aima-python-dark.svg"><img alt="aima-python" src="assets/cards/aimacode-aima-python-light.svg" width="400"></picture></a>
@@ -14,7 +14,7 @@
 <a href="https://github.com/SPSUnipi/pypsa2smspp"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/SPSUnipi-pypsa2smspp-dark.svg"><img alt="pypsa2smspp" src="assets/cards/SPSUnipi-pypsa2smspp-light.svg" width="400"></picture></a>
 <a href="https://github.com/qpsolvers/qpsolvers"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/qpsolvers-qpsolvers-dark.svg"><img alt="qpsolvers" src="assets/cards/qpsolvers-qpsolvers-light.svg" width="400"></picture></a>
 
-### Earlier projects
+### 🗃️ Earlier projects
 
 <a href="https://github.com/dmeoli/WS4J"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/WS4J-dark.svg"><img alt="WS4J" src="assets/cards/WS4J-light.svg" width="400"></picture></a>
 <a href="https://github.com/dmeoli/BeerEX"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/BeerEX-dark.svg"><img alt="BeerEX" src="assets/cards/BeerEX-light.svg" width="400"></picture></a>
@@ -23,13 +23,13 @@
 <a href="https://github.com/dmeoli/FuzzyCLIPS"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/FuzzyCLIPS-dark.svg"><img alt="FuzzyCLIPS" src="assets/cards/FuzzyCLIPS-light.svg" width="400"></picture></a>
 <a href="https://github.com/dmeoli/OnlineRetail"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/OnlineRetail-dark.svg"><img alt="OnlineRetail" src="assets/cards/OnlineRetail-light.svg" width="400"></picture></a>
 
-### Tools
+### 🛠️ Tools
 
 <a href="https://github.com/dmeoli/code-style"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/code-style-dark.svg"><img alt="code-style" src="assets/cards/code-style-light.svg" width="400"></picture></a>
 <a href="https://github.com/dmeoli/lamalunga"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/lamalunga-dark.svg"><img alt="lamalunga" src="assets/cards/lamalunga-light.svg" width="400"></picture></a>
 <!-- software:end -->
 
-### Gists
+### 📝 Gists
 
 <!-- gists:start -->
 <a href="https://gist.github.com/dmeoli/fa340ecc4dd7435542b858b93b514f2c"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/gists/fa340ecc4dd7435542b858b93b514f2c-dark.svg"><img alt="sun-brightness" src="assets/gists/fa340ecc4dd7435542b858b93b514f2c-light.svg" width="400"></picture></a>
@@ -38,7 +38,7 @@
 <a href="https://gist.github.com/dmeoli/0cd91d3ed8ea8e568ccfc5200de99fd0"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/gists/0cd91d3ed8ea8e568ccfc5200de99fd0-dark.svg"><img alt="vpn" src="assets/gists/0cd91d3ed8ea8e568ccfc5200de99fd0-light.svg" width="400"></picture></a>
 <!-- gists:end -->
 
-### Languages
+### 📊 Languages
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/languages-dark.svg">
