@@ -360,8 +360,8 @@ def repo_data(full):
 def software(root):
     """The sections of projects.yml: the cards of their repositories,
     written in assets/cards, the markdown that shows them two a row under
-    the title of each section, and assets/projects.json, from which the
-    personal page shows the same cards with the notes."""
+    the title of each section, and the entries of the personal page,
+    which shows the same cards with the notes."""
     with open(os.path.join(root, 'projects.yml')) as f:
         spec = yaml.safe_load(f)
     md, data = [], []
@@ -386,15 +386,13 @@ def software(root):
         data.append({'id': sec['id'], 'title': sec['title'],
                      'emoji': sec['emoji'],
                      'repos': entries})
-    write(root, 'assets/projects.json',
-          json.dumps({'sections': data}, indent=1, ensure_ascii=False) +
-          '\n')
-    return '\n\n'.join(md)
+    return '\n\n'.join(md), data
 
 
 def gists(root):
-    """The cards of the public gists, newest first, and their markdown."""
-    items = []
+    """The cards of the public gists, newest first, their markdown, and
+    the entries of the page."""
+    items, entries = [], []
     k = 0
     for g in get('/users/%s/gists?per_page=100' % USER, auth=False):
         if not g['public']:
@@ -416,8 +414,10 @@ def gists(root):
                   gist_card(data, theme, k))
         items.append(picture(g['html_url'], 'assets/gists/' + g['id'],
                              data['name'], 400))
+        entries.append({'name': data['name'], 'url': g['html_url'],
+                        'card': 'assets/gists/' + g['id']})
         k += 1
-    return '\n'.join(items)
+    return '\n'.join(items), entries
 
 
 def put(text, name, body):
@@ -436,8 +436,17 @@ def main(argv):
             f.write(chart(langs, theme))
     with open(readme) as f:
         text = f.read()
-    text = put(text, 'software', software(root))
-    text = put(text, 'gists', gists(root))
+    # the sections and the gists, also in assets/projects.json, from which
+    # the personal page shows the same cards in the same order
+    md, data = software(root)
+    text = put(text, 'software', md)
+    md, entries = gists(root)
+    text = put(text, 'gists', md)
+    data.append({'id': 'gists', 'title': {'en': 'Gists', 'it': 'Gist'},
+                 'emoji': '\U0001F4DD', 'repos': entries})
+    write(root, 'assets/projects.json',
+          json.dumps({'sections': data}, indent=1, ensure_ascii=False) +
+          '\n')
     with open(readme, 'w') as f:
         f.write(text)
     return 0

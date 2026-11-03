@@ -149,6 +149,36 @@
      "note": null
     }
    ]
+  },
+  {
+   "id": "gists",
+   "title": {
+    "en": "Gists",
+    "it": "Gist"
+   },
+   "emoji": "📝",
+   "repos": [
+    {
+     "name": "sun-brightness",
+     "url": "https://gist.github.com/dmeoli/fa340ecc4dd7435542b858b93b514f2c",
+     "card": "assets/gists/fa340ecc4dd7435542b858b93b514f2c"
+    },
+    {
+     "name": "gmailify",
+     "url": "https://gist.github.com/dmeoli/b4910d66920609e3bad334194f6317ab",
+     "card": "assets/gists/b4910d66920609e3bad334194f6317ab"
+    },
+    {
+     "name": "gdrive-bisync",
+     "url": "https://gist.github.com/dmeoli/69b02099accc84dda40b48fb69cd51c9",
+     "card": "assets/gists/69b02099accc84dda40b48fb69cd51c9"
+    },
+    {
+     "name": "vpn",
+     "url": "https://gist.github.com/dmeoli/0cd91d3ed8ea8e568ccfc5200de99fd0",
+     "card": "assets/gists/0cd91d3ed8ea8e568ccfc5200de99fd0"
+    }
+   ]
   }
  ]
 }
