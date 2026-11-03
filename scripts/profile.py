@@ -24,7 +24,7 @@ USER = 'dmeoli'
 API = 'https://api.github.com'
 
 # repositories whose code is mostly of others (a fork kept up, a tap, a site)
-SKIP_REPOS = {'lemon-ng', 'homebrew-lemon-ng', 'dmeoli.github.io', USER}
+SKIP_REPOS = {'abLEMON', 'homebrew-ablemon', 'dmeoli.github.io', USER}
 # languages whose bytes are not code written (outputs of notebooks, pages)
 SKIP_LANGS = {'Jupyter Notebook', 'HTML', 'CSS', 'SCSS'}
 TOP = 8

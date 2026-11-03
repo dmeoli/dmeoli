@@ -14,7 +14,7 @@ sections:
       - NeuroSAT
       - GQSAT
       - SicilianNMT
-      - lemon-ng
+      - abLEMON
       - ADS
       - PBeFS
       - optiml
