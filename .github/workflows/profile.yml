@@ -24,6 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install PyYAML
+        run: pip install -q pyyaml
+
       - name: Write the generated parts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

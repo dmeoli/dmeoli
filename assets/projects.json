@@ -1,0 +1,151 @@
+{
+ "sections": [
+  {
+   "id": "projects",
+   "title": {
+    "en": "Projects",
+    "it": "Progetti"
+   },
+   "repos": [
+    {
+     "name": "smspp-project",
+     "url": "https://github.com/SMSpp-Project/smspp-project",
+     "card": "assets/cards/SMSpp-Project-smspp-project",
+     "note": null
+    },
+    {
+     "name": "aima-python",
+     "url": "https://github.com/aimacode/aima-python",
+     "card": "assets/cards/aimacode-aima-python",
+     "note": null
+    },
+    {
+     "name": "NeuroSAT",
+     "url": "https://github.com/dmeoli/NeuroSAT",
+     "card": "assets/cards/NeuroSAT",
+     "note": null
+    },
+    {
+     "name": "GQSAT",
+     "url": "https://github.com/dmeoli/GQSAT",
+     "card": "assets/cards/GQSAT",
+     "note": null
+    },
+    {
+     "name": "SicilianNMT",
+     "url": "https://github.com/dmeoli/SicilianNMT",
+     "card": "assets/cards/SicilianNMT",
+     "note": null
+    },
+    {
+     "name": "lemon-ng",
+     "url": "https://github.com/dmeoli/lemon-ng",
+     "card": "assets/cards/lemon-ng",
+     "note": null
+    },
+    {
+     "name": "ADS",
+     "url": "https://github.com/dmeoli/ADS",
+     "card": "assets/cards/ADS",
+     "note": null
+    },
+    {
+     "name": "PBeFS",
+     "url": "https://github.com/dmeoli/PBeFS",
+     "card": "assets/cards/PBeFS",
+     "note": null
+    },
+    {
+     "name": "optiml",
+     "url": "https://github.com/dmeoli/optiml",
+     "card": "assets/cards/optiml",
+     "note": null
+    },
+    {
+     "name": "pySMSpp",
+     "url": "https://github.com/SPSUnipi/pySMSpp",
+     "card": "assets/cards/SPSUnipi-pySMSpp",
+     "note": null
+    },
+    {
+     "name": "pypsa2smspp",
+     "url": "https://github.com/SPSUnipi/pypsa2smspp",
+     "card": "assets/cards/SPSUnipi-pypsa2smspp",
+     "note": null
+    },
+    {
+     "name": "qpsolvers",
+     "url": "https://github.com/qpsolvers/qpsolvers",
+     "card": "assets/cards/qpsolvers-qpsolvers",
+     "note": null
+    }
+   ]
+  },
+  {
+   "id": "earlier",
+   "title": {
+    "en": "Earlier projects",
+    "it": "Progetti precedenti"
+   },
+   "repos": [
+    {
+     "name": "WS4J",
+     "url": "https://github.com/dmeoli/WS4J",
+     "card": "assets/cards/WS4J",
+     "note": null
+    },
+    {
+     "name": "BeerEX",
+     "url": "https://github.com/dmeoli/BeerEX",
+     "card": "assets/cards/BeerEX",
+     "note": null
+    },
+    {
+     "name": "PESAD",
+     "url": "https://github.com/dmeoli/PESAD",
+     "card": "assets/cards/PESAD",
+     "note": null
+    },
+    {
+     "name": "WNAffect",
+     "url": "https://github.com/dmeoli/WNAffect",
+     "card": "assets/cards/WNAffect",
+     "note": null
+    },
+    {
+     "name": "FuzzyCLIPS",
+     "url": "https://github.com/dmeoli/FuzzyCLIPS",
+     "card": "assets/cards/FuzzyCLIPS",
+     "note": null
+    },
+    {
+     "name": "OnlineRetail",
+     "url": "https://github.com/dmeoli/OnlineRetail",
+     "card": "assets/cards/OnlineRetail",
+     "note": null
+    }
+   ]
+  },
+  {
+   "id": "tools",
+   "title": {
+    "en": "Tools",
+    "it": "Strumenti"
+   },
+   "repos": [
+    {
+     "name": "code-style",
+     "url": "https://github.com/dmeoli/code-style",
+     "card": "assets/cards/code-style",
+     "note": null
+    },
+    {
+     "name": "lamalunga",
+     "url": "https://github.com/dmeoli/lamalunga",
+     "card": "assets/cards/lamalunga",
+     "note": null
+    }
+   ]
+  }
+ ]
+}

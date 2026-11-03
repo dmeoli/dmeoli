@@ -13,8 +13,12 @@ import json
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.request
 from xml.sax.saxutils import escape
+
+import yaml
 
 USER = 'dmeoli'
 API = 'https://api.github.com'
@@ -24,17 +28,6 @@ SKIP_REPOS = {'lemon-ng', 'homebrew-lemon-ng', 'dmeoli.github.io', USER}
 # languages whose bytes are not code written (outputs of notebooks, pages)
 SKIP_LANGS = {'Jupyter Notebook', 'HTML', 'CSS', 'SCSS'}
 TOP = 8
-
-# the repositories shown, by their nature: the main projects (large, of
-# research, leading to papers), the earlier ones, and the tools; two cards
-# a row, in this order; a repository of another owner is owner/name. A new
-# repository goes in one of them if it is worth showing.
-MAIN = ['SMSpp-Project/smspp-project', 'aimacode/aima-python', 'NeuroSAT',
-        'GQSAT', 'SicilianNMT', 'lemon-ng', 'ADS', 'PBeFS', 'optiml',
-        'SPSUnipi/pySMSpp', 'SPSUnipi/pypsa2smspp']
-EARLIER = ['WS4J', 'BeerEX', 'PESAD', 'WNAffect', 'FuzzyCLIPS',
-           'OnlineRetail']
-TOOLS = ['code-style', 'lamalunga']
 
 # the colors of the languages, as GitHub shows them (linguist)
 LANG_COLORS = {
@@ -88,10 +81,10 @@ FONT = ('text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",'
 THEMES = {
     'light': {'bar': '#7a52c0', 'text': '#1f2328', 'muted': '#59636e',
               'track': '#eae4f4', 'link': '#7a52c0', 'border': '#d1d9e0',
-              'bg': '#ffffff', 'glow': ('#7a52c0', '#b39ddb', '#7a52c0')},
-    'dark': {'bar': '#a98be0', 'text': '#e6edf3', 'muted': '#9198a1',
-             'track': '#221c2e', 'link': '#a98be0', 'border': '#3d444d',
-             'bg': '#0d1117', 'glow': ('#7a52c0', '#d9cdf0', '#7a52c0')},
+              'bg': 'none', 'glow': ('#7a52c0', '#b39ddb', '#7a52c0')},
+    'dark': {'bar': '#a98be0', 'text': '#e6edf3', 'muted': '#b4b9c0',
+             'track': '#221c2e', 'link': '#d4b9eb', 'border': '#3d444d',
+             'bg': 'none', 'glow': ('#7a52c0', '#d9cdf0', '#7a52c0')},
 }
 
 
@@ -107,9 +100,18 @@ def get(path, auth=True):
         token = os.environ.get('GITHUB_TOKEN') if auth else None
         if token:
             req.add_header('Authorization', 'Bearer ' + token)
-        with urllib.request.urlopen(req) as r:
-            data = json.load(r)
-            link = r.headers.get('Link', '')
+        # the API of GitHub answers now and then with an error that the
+        # same request does not give a moment later: three tries
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(req) as r:
+                    data = json.load(r)
+                    link = r.headers.get('Link', '')
+                break
+            except urllib.error.HTTPError:
+                if attempt == 2:
+                    raise
+                time.sleep(5)
         if isinstance(data, list):
             out = (out or []) + data
         elif isinstance(data, dict) and 'items' in data and out is None:
@@ -264,17 +266,15 @@ def card(repo, theme, k=0, kind='repo'):
     out = frame(w, h, c, k, kind, repo['name'])
     out.append('<path transform="translate(16,16)" fill="%s" d="%s"/>'
                % (c['muted'], ICON_REPO))
-    x = 40
+    # the owner and the name in one text, so that whoever draws it puts
+    # them one after the other in the font it has
+    owner = ''
     if repo['owner'] != USER:
-        out.append('<text x="%d" y="29" font-size="14" fill="%s">%s/</text>'
-                   % (x, c['muted'], escape(repo['owner'])))
-        # the width of the owner, by the widths of the letters of the font
-        # at 14px: the narrow ones, the wide ones and the rest
-        x += sum(4 if ch in 'ijlrt-/.' else 11 if ch in 'mwMW' else
-                 9 if ch.isupper() else 7.5 for ch in repo['owner'] + '/')
-        x = round(x) + 2
-    out.append('<text x="%d" y="29" font-size="14" font-weight="600" '
-               'fill="%s">%s</text>' % (x, c['link'], escape(repo['name'])))
+        owner = '<tspan fill="%s">%s/</tspan>' % (c['muted'],
+                                                 escape(repo['owner']))
+    out.append('<text x="40" y="29" font-size="14">%s<tspan '
+               'font-weight="600" fill="%s">%s</tspan></text>'
+               % (owner, c['link'], escape(repo['name'])))
     for i, line in enumerate(wrap(repo['description'], 60, 2)):
         out.append('<text x="16" y="%d" font-size="12" fill="%s">%s</text>'
                    % (54 + 18 * i, c['muted'], escape(line)))
@@ -332,19 +332,37 @@ def repo_data(full):
     return data
 
 
-def cards(root, names, kind):
-    """The cards of the repositories names, written in assets/cards, and
-    the markdown that shows them, two a row."""
-    items = []
-    for k, full in enumerate(names):
-        repo = repo_data(full)
-        slug = full.replace('/', '-')
-        for theme in THEMES:
-            write(root, 'assets/cards/%s-%s.svg' % (slug, theme),
-                  card(repo, theme, k, kind))
-        items.append(picture(repo['url'], 'assets/cards/' + slug,
-                             repo['name'], 400))
-    return '\n'.join(items)
+def software(root):
+    """The sections of projects.yml: the cards of their repositories,
+    written in assets/cards, the markdown that shows them two a row under
+    the title of each section, and assets/projects.json, from which the
+    personal page shows the same cards with the notes."""
+    with open(os.path.join(root, 'projects.yml')) as f:
+        spec = yaml.safe_load(f)
+    md, data = [], []
+    for sec in spec['sections']:
+        kind = 'main' if sec['id'] == 'projects' else 'repo'
+        items, entries = [], []
+        for k, entry in enumerate(sec['repos']):
+            if isinstance(entry, str):
+                entry = {'repo': entry}
+            repo = repo_data(entry['repo'])
+            slug = entry['repo'].replace('/', '-')
+            for theme in THEMES:
+                write(root, 'assets/cards/%s-%s.svg' % (slug, theme),
+                      card(repo, theme, k, kind))
+            items.append(picture(repo['url'], 'assets/cards/' + slug,
+                                 repo['name'], 400))
+            entries.append({'name': repo['name'], 'url': repo['url'],
+                            'card': 'assets/cards/' + slug,
+                            'note': entry.get('note')})
+        md.append('### %s\n\n%s' % (sec['title']['en'], '\n'.join(items)))
+        data.append({'id': sec['id'], 'title': sec['title'],
+                     'repos': entries})
+    write(root, 'assets/projects.json',
+          json.dumps({'sections': data}, indent=1, ensure_ascii=False) +
+          '\n')
+    return '\n\n'.join(md)
 
 
 def gists(root):
@@ -391,9 +409,7 @@ def main(argv):
             f.write(chart(langs, theme))
     with open(readme) as f:
         text = f.read()
-    text = put(text, 'main', cards(root, MAIN, 'main'))
-    text = put(text, 'earlier', cards(root, EARLIER, 'repo'))
-    text = put(text, 'tools', cards(root, TOOLS, 'repo'))
+    text = put(text, 'software', software(root))
     text = put(text, 'gists', gists(root))
     with open(readme, 'w') as f:
         f.write(text)
