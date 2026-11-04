@@ -4,8 +4,8 @@
 <rect class="b" style="animation-delay:0.00s" x="112" y="9" width="312.0" height="12" rx="2" fill="#a98be0"><title>C++: 87.4%</title></rect>
 <text class="p" style="animation-delay:0.80s" x="430.0" y="18" fill="#b4b9c0">87.4%</text>
 <text x="104" y="44" text-anchor="end" fill="#e6edf3">Python</text>
-<rect class="b" style="animation-delay:0.10s" x="112" y="35" width="19.7" height="12" rx="2" fill="#a98be0"><title>Python: 5.5%</title></rect>
-<text class="p" style="animation-delay:0.90s" x="137.7" y="44" fill="#b4b9c0">5.5%</text>
+<rect class="b" style="animation-delay:0.10s" x="112" y="35" width="19.6" height="12" rx="2" fill="#a98be0"><title>Python: 5.5%</title></rect>
+<text class="p" style="animation-delay:0.90s" x="137.6" y="44" fill="#b4b9c0">5.5%</text>
 <text x="104" y="70" text-anchor="end" fill="#e6edf3">TeX</text>
 <rect class="b" style="animation-delay:0.20s" x="112" y="61" width="5.8" height="12" rx="2" fill="#a98be0"><title>TeX: 1.6%</title></rect>
 <text class="p" style="animation-delay:1.00s" x="123.8" y="70" fill="#b4b9c0">1.6%</text>
