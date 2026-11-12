@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Writes the parts of the README of the profile that come from GitHub: the
 list of the public gists, and the chart of the languages of the public
-repositories (assets/, in a light and in a dark version). The README
+repositories (assets/, in a light, a dark and an automatic version). The README
 keeps everything else; each generated part sits between the markers
 <!-- NAME:start --> and <!-- NAME:end -->.
 
@@ -328,11 +328,41 @@ def gist_card(g, theme, k=0):
     return '\n'.join(out) + '\n'
 
 
+def auto(light, dark):
+    """The light and the dark version in one SVG, which shows the one of
+    the color scheme of the viewer: GitLab drops <picture> and <source>,
+    so its README gets this one from the <img>. The two versions share
+    the head and the style; the ids get the theme as suffix."""
+    head, style = light.split('\n', 2)[:2]
+    parts = []
+    for theme, svg in (('light', light), ('dark', dark)):
+        body = svg.split('\n', 2)[2].rsplit('</svg>', 1)[0]
+        for name in re.findall(r' id="([^"]+)"', body):
+            body = re.sub(r'(id="|#)%s\b' % re.escape(name),
+                          r'\g<1>%s-%s' % (name, theme), body)
+        parts.append('<g class="%s">\n%s</g>\n' % (theme, body))
+    style = style.replace('</style>', '.dark{display:none}@media '
+                          '(prefers-color-scheme: dark){.light{display:none}'
+                          '.dark{display:inline}}</style>')
+    return '%s\n%s\n%s</svg>\n' % (head, style, ''.join(parts))
+
+
 def picture(href, path, alt, width):
+    """GitHub picks a <source> by its own theme, so the <img> is seen only
+    where <picture> is dropped (GitLab): it gets the automatic version."""
     return ('<a href="%s"><picture><source media="(prefers-color-scheme: '
-            'dark)" srcset="%s-dark.svg"><img alt="%s" src="%s-light.svg" '
-            'width="%d"></picture></a>' % (href, path, escape(alt), path,
-                                           width))
+            'dark)" srcset="%s-dark.svg"><source media="(prefers-color-'
+            'scheme: light)" srcset="%s-light.svg"><img alt="%s" '
+            'src="%s-auto.svg" width="%d"></picture></a>'
+            % (href, path, path, escape(alt), path, width))
+
+
+def write_themes(root, path, draw):
+    """path-light.svg, path-dark.svg and path-auto.svg, from draw(theme)."""
+    svg = {theme: draw(theme) for theme in THEMES}
+    for theme in THEMES:
+        write(root, '%s-%s.svg' % (path, theme), svg[theme])
+    write(root, path + '-auto.svg', auto(svg['light'], svg['dark']))
 
 
 def write(root, path, svg):
@@ -371,9 +401,8 @@ def software(root):
                 entry = {'repo': entry}
             repo = repo_data(entry['repo'])
             slug = entry['repo'].replace('/', '-')
-            for theme in THEMES:
-                write(root, 'assets/cards/%s-%s.svg' % (slug, theme),
-                      card(repo, theme, k, kind))
+            write_themes(root, 'assets/cards/' + slug,
+                         lambda theme: card(repo, theme, k, kind))
             items.append(picture(repo['url'], 'assets/cards/' + slug,
                                  repo['name'], 400))
             entries.append({'name': repo['name'], 'url': repo['url'],
@@ -406,9 +435,8 @@ def gists(root):
                 'language': next((f['language'] for f in files
                                   if f.get('language') not in
                                   (None, 'Markdown', 'Text', 'INI')), '')}
-        for theme in THEMES:
-            write(root, 'assets/gists/%s-%s.svg' % (g['id'], theme),
-                  gist_card(data, theme, k))
+        write_themes(root, 'assets/gists/' + g['id'],
+                     lambda theme: gist_card(data, theme, k))
         items.append(picture(g['html_url'], 'assets/gists/' + g['id'],
                              data['name'], 400))
         entries.append({'name': data['name'], 'url': g['html_url'],
@@ -427,10 +455,7 @@ def main(argv):
     readme = argv[0] if argv else 'README.md'
     root = os.path.dirname(os.path.abspath(readme))
     langs = languages()
-    for theme in THEMES:
-        with open(os.path.join(root, 'assets', 'languages-%s.svg' % theme),
-                  'w') as f:
-            f.write(chart(langs, theme))
+    write_themes(root, 'assets/languages', lambda theme: chart(langs, theme))
     with open(readme) as f:
         text = f.read()
     # the sections and the gists, also in assets/projects.json, from which
