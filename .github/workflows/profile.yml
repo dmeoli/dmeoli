@@ -73,6 +73,20 @@ jobs:
             dist/snake-light.svg?palette=github-light&color_snake=#7a52c0&color_dots=#ebedf0,#e0d4f5,#bfa6e8,#9a78d6,#6b44b0
             dist/snake-dark.svg?palette=github-dark&color_snake=#a98be0&color_dots=#161b22,#2e2440,#4f3a78,#7a52c0,#a98be0
 
+      # one SVG that follows the color scheme of the viewer, for the <img>
+      # of the README (GitLab drops <picture>): the two versions differ
+      # only in the colors of :root
+      - name: Write the automatic version
+        shell: python3 {0}
+        run: |
+          import re
+          light = open('dist/snake-light.svg').read()
+          dark = open('dist/snake-dark.svg').read()
+          root = re.search(r':root\{[^}]*\}', dark).group(0)
+          with open('dist/snake-auto.svg', 'w') as f:
+              f.write(light.replace('</style>', '@media (prefers-color-'
+                                    'scheme: dark){%s}</style>' % root, 1))
+
       - uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output

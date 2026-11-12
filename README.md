@@ -48,5 +48,6 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/dmeoli/dmeoli/output/snake-dark.svg">
-  <img alt="The contributions of the last year, eaten by a snake" src="https://raw.githubusercontent.com/dmeoli/dmeoli/output/snake-light.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/dmeoli/dmeoli/output/snake-light.svg">
+  <img alt="The contributions of the last year, eaten by a snake" src="https://raw.githubusercontent.com/dmeoli/dmeoli/output/snake-auto.svg">
 </picture>
