@@ -42,6 +42,27 @@ jobs:
           git commit -m "the generated parts of the profile, written again"
           git push
 
+  # The same README on the GitLab profile (gitlab.com/dmeoli/dmeoli), pushed
+  # with a deploy key that can write only there.
+  gitlab:
+    needs: readme
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Push main to GitLab
+        env:
+          KEY: ${{ secrets.GITLAB_DEPLOY_KEY }}
+        run: |
+          install -m 600 /dev/null "$HOME/gitlab_key"
+          printf '%s\n' "$KEY" > "$HOME/gitlab_key"
+          ssh-keyscan -t ed25519 gitlab.com > "$HOME/gitlab_hosts" 2>/dev/null
+          export GIT_SSH_COMMAND="ssh -i $HOME/gitlab_key -o UserKnownHostsFile=$HOME/gitlab_hosts"
+          git push --force git@gitlab.com:dmeoli/dmeoli.git HEAD:main
+
   snake:
     runs-on: ubuntu-latest
     steps:
