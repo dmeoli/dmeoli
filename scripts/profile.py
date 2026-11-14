@@ -408,8 +408,14 @@ def software(root):
             entries.append({'name': repo['name'], 'url': repo['url'],
                             'card': 'assets/cards/' + slug,
                             'note': entry.get('note')})
-        md.append('### %s %s\n\n%s' % (sec['emoji'], sec['title']['en'],
-                                        '\n'.join(items)))
+        # the notes of the cards, in English and above them, {who} as a link
+        notes = ['**%s**: %s' % (e['name'], e['note']['en'].replace(
+                     '{who}', '[%s](%s)' % (e['note']['who'],
+                                            e['note']['url'])))
+                 for e in entries if e['note']]
+        md.append('### %s %s\n\n%s%s' % (sec['emoji'], sec['title']['en'],
+                                          ''.join(n + '\n\n' for n in notes),
+                                          '\n'.join(items)))
         data.append({'id': sec['id'], 'title': sec['title'],
                      'emoji': sec['emoji'],
                      'repos': entries})

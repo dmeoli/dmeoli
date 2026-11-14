@@ -2,15 +2,26 @@
 # and in order: a repository of another owner is owner/name. A card takes
 # its name, description, language, stars and forks from GitHub. A new
 # repository worth showing goes in a section, whose emoji goes before its
-# title.
+# title. A repository may carry a note for the personal page, in the two
+# languages, where {who} becomes a link to the page of a person (who, url).
 
 sections:
   - id: projects
     title: {en: Projects, it: Progetti}
     emoji: "\U0001F52C"
     repos:
-      - SMSpp-Project/smspp-project
-      - aimacode/aima-python
+      - repo: SMSpp-Project/smspp-project
+        note:
+          en: Co-lead maintainer, with {who}, since 2021.
+          it: Co-lead maintainer, con {who}, dal 2021.
+          who: A. Frangioni
+          url: https://pages.di.unipi.it/frangio/
+      - repo: aimacode/aima-python
+        note:
+          en: Maintainer, with {who}, since 2019.
+          it: Maintainer, con {who}, dal 2019.
+          who: P. Norvig
+          url: https://norvig.com/
       - NeuroSAT
       - GQSAT
       - SicilianNMT
