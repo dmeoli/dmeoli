@@ -22,6 +22,12 @@ sections:
           it: Maintainer, con {who}, dal 2019.
           who: P. Norvig
           url: https://norvig.com/
+      - repo: opt-playground
+        note:
+          en: Interactive pages on optimization algorithms, primal and dual side by side, at {who}.
+          it: Pagine interattive sugli algoritmi di ottimizzazione, primale e duale affiancati, su {who}.
+          who: dmeoli.github.io/opt-playground
+          url: https://dmeoli.github.io/opt-playground/
       - NeuroSAT
       - GQSAT
       - SicilianNMT
