@@ -79,24 +79,24 @@ FONT = ('text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",'
         '"Noto Sans",Helvetica,Arial,sans-serif}')
 
 THEMES = {
-    'light': {'bar': '#7a52c0', 'text': '#1f2328', 'muted': '#59636e',
-              'track': '#eae4f4', 'link': '#7a52c0', 'border': '#d1d9e0',
-              'bg': 'none', 'glow': ('#7a52c0', '#b39ddb', '#7a52c0')},
-    'dark': {'bar': '#a98be0', 'text': '#e6edf3', 'muted': '#b4b9c0',
-             'track': '#221c2e', 'link': '#d4b9eb', 'border': '#3d444d',
-             'bg': 'none', 'glow': ('#7a52c0', '#d9cdf0', '#7a52c0')},
+    'light': {'bar': '#7338a8', 'text': '#1f2328', 'muted': '#59636e',
+              'track': '#eee7f5', 'link': '#7338a8', 'border': '#d1d9e0',
+              'bg': 'none', 'glow': ('#7338a8', '#ad85d0', '#7338a8')},
+    'dark': {'bar': '#d4b9eb', 'text': '#e6edf3', 'muted': '#b4b9c0',
+             'track': '#281e38', 'link': '#e1ccf4', 'border': '#3d444d',
+             'bg': 'none', 'glow': ('#7338a8', '#d4b9eb', '#7338a8')},
 }
 
 # the ground and the border of the cards of each section, a scale of the
 # purple from the projects to the earlier ones, and the gold of the gists,
 # so that a card stands out from the page and tells its section
 KINDS = {
-    'projects': {'light': ('#ece0fa', '#c9b2e8'),
-                 'dark': ('#2d2142', '#5b4683')},
-    'tools': {'light': ('#f2eafb', '#d6c6ee'),
-              'dark': ('#251d35', '#4a3c66')},
-    'earlier': {'light': ('#f6f2fa', '#e0d6ec'),
-                'dark': ('#1d1828', '#3b3350')},
+    'projects': {'light': ('#ede5f4', '#cab3de'),
+                 'dark': ('#302143', '#4a2a6a')},
+    'tools': {'light': ('#f4eff8', '#d9c9e8'),
+              'dark': ('#2b1f3c', '#40265c')},
+    'earlier': {'light': ('#f9f7fc', '#e7ddf0'),
+                'dark': ('#1e162a', '#37234e')},
     'gist': {'light': ('#f9f3e3', '#e3d3a4'),
              'dark': ('#272114', '#5e5132'),
              'glow': ('#846f2d', '#e0c97f', '#846f2d')},
