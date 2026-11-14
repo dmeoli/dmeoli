@@ -1,6 +1,10 @@
 <!-- software:start -->
 ### 🔬 Projects
 
+**smspp-project**: Co-lead maintainer, with [A. Frangioni](https://pages.di.unipi.it/frangio/), since 2021.
+
+**aima-python**: Maintainer, with [P. Norvig](https://norvig.com/), since 2019.
+
 <a href="https://github.com/SMSpp-Project/smspp-project"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/SMSpp-Project-smspp-project-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/cards/SMSpp-Project-smspp-project-light.svg"><img alt="smspp-project" src="assets/cards/SMSpp-Project-smspp-project-auto.svg" width="400"></picture></a>
 <a href="https://github.com/aimacode/aima-python"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/aimacode-aima-python-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/cards/aimacode-aima-python-light.svg"><img alt="aima-python" src="assets/cards/aimacode-aima-python-auto.svg" width="400"></picture></a>
 <a href="https://github.com/dmeoli/NeuroSAT"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/NeuroSAT-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/cards/NeuroSAT-light.svg"><img alt="NeuroSAT" src="assets/cards/NeuroSAT-auto.svg" width="400"></picture></a>

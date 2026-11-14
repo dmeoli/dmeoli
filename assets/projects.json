@@ -12,13 +12,23 @@
      "name": "smspp-project",
      "url": "https://github.com/SMSpp-Project/smspp-project",
      "card": "assets/cards/SMSpp-Project-smspp-project",
-     "note": null
+     "note": {
+      "en": "Co-lead maintainer, with {who}, since 2021.",
+      "it": "Co-lead maintainer, con {who}, dal 2021.",
+      "who": "A. Frangioni",
+      "url": "https://pages.di.unipi.it/frangio/"
+     }
     },
     {
      "name": "aima-python",
      "url": "https://github.com/aimacode/aima-python",
      "card": "assets/cards/aimacode-aima-python",
-     "note": null
+     "note": {
+      "en": "Maintainer, with {who}, since 2019.",
+      "it": "Maintainer, con {who}, dal 2019.",
+      "who": "P. Norvig",
+      "url": "https://norvig.com/"
+     }
     },
     {
      "name": "NeuroSAT",
