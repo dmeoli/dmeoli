@@ -31,6 +31,17 @@
      }
     },
     {
+     "name": "opt-playground",
+     "url": "https://github.com/dmeoli/opt-playground",
+     "card": "assets/cards/opt-playground",
+     "note": {
+      "en": "Interactive pages on optimization algorithms, primal and dual side by side, at {who}.",
+      "it": "Pagine interattive sugli algoritmi di ottimizzazione, primale e duale affiancati, su {who}.",
+      "who": "dmeoli.github.io/opt-playground",
+      "url": "https://dmeoli.github.io/opt-playground/"
+     }
+    },
+    {
      "name": "NeuroSAT",
      "url": "https://github.com/dmeoli/NeuroSAT",
      "card": "assets/cards/NeuroSAT",
@@ -88,7 +99,10 @@
      "name": "qpsolvers",
      "url": "https://github.com/qpsolvers/qpsolvers",
      "card": "assets/cards/qpsolvers-qpsolvers",
-     "note": null
+     "note": {
+      "en": "Contributor since 2020, and co-author of its citation.",
+      "it": "Contributor dal 2020, e coautore della sua citazione."
+     }
     }
    ]
   },
