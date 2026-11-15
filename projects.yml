@@ -22,6 +22,10 @@ sections:
           it: Maintainer, con {who}, dal 2019.
           who: P. Norvig
           url: https://norvig.com/
+      - repo: qpsolvers/qpsolvers
+        note:
+          en: Contributor since 2020, and co-author of its citation.
+          it: Contributor dal 2020, e coautore della sua citazione.
       - NeuroSAT
       - GQSAT
       - SicilianNMT
@@ -31,10 +35,6 @@ sections:
       - optiml
       - SPSUnipi/pySMSpp
       - SPSUnipi/pypsa2smspp
-      - repo: qpsolvers/qpsolvers
-        note:
-          en: Contributor since 2020, and co-author of its citation.
-          it: Contributor dal 2020, e coautore della sua citazione.
   - id: earlier
     title: {en: Earlier projects, it: Progetti precedenti}
     emoji: "\U0001F5C3\uFE0F"
