@@ -282,12 +282,14 @@ def frame(w, h, c, k, kind, label):
     return out
 
 
-def card(repo, theme, k=0, kind='projects'):
+def card(repo, theme, k=0, kind='projects', note=None, tall=False):
     """A card of a repository, in the layout of the pinned ones: the owner
     before the name for a repository of another, the description as
-    GitHub has it; a main project has a wider accent."""
+    GitHub has it; a main project has a wider accent. The cards of the
+    README may be taller, to hold the note of the project at the bottom
+    (or to stand as tall as the card beside them)."""
     c = colors(theme, kind)
-    w, h = 400, 120
+    w, h = 400, 146 if tall else 120
     out = frame(w, h, c, k, kind, repo['name'])
     out.append('<path transform="translate(16,16)" fill="%s" d="%s"/>'
                % (c['muted'], ICON_REPO))
@@ -305,6 +307,9 @@ def card(repo, theme, k=0, kind='projects'):
                    % (54 + 18 * i, c['muted'], escape(line)))
     out += footer(16, 100, c, repo['language'],
                   ((ICON_STAR, repo['stars']), (ICON_FORK, repo['forks'])))
+    if note:
+        out.append('<text x="16" y="129" font-size="12" font-style="italic" '
+                   'fill="%s">%s</text>' % (c['link'], escape(note)))
     out += ['</g>', '</svg>']
     return '\n'.join(out) + '\n'
 
@@ -395,7 +400,7 @@ def software(root):
     md, data = [], []
     for sec in spec['sections']:
         kind = sec['id']
-        items, entries = [], []
+        entries = []
         for k, entry in enumerate(sec['repos']):
             if isinstance(entry, str):
                 entry = {'repo': entry}
@@ -403,30 +408,32 @@ def software(root):
             slug = entry['repo'].replace('/', '-')
             write_themes(root, 'assets/cards/' + slug,
                          lambda theme: card(repo, theme, k, kind))
-            items.append(picture(repo['url'], 'assets/cards/' + slug,
-                                 repo['name'], 400))
             entries.append({'name': repo['name'], 'url': repo['url'],
                             'card': 'assets/cards/' + slug,
-                            'note': entry.get('note')})
-        # a section with notes is a table of two cards a row, each note
-        # under its card as on the personal page, {who} as a link
-        if any(e['note'] for e in entries):
-            def cell(item, e):
-                n = e['note']
-                who = '<a href="%s">%s</a>' % (n.get('url'), n.get('who')) \
-                    if n else ''
-                note = '<br>' + n['en'].replace('{who}', who) if n else ''
-                return '<td valign="top" width="50%%">%s%s</td>' % (item, note)
-            cells = [cell(i, e) for i, e in zip(items, entries)]
-            body = '<table>\n%s\n</table>' % '\n'.join(
-                '<tr>%s</tr>' % ''.join(cells[j:j + 2])
-                for j in range(0, len(cells), 2))
-        else:
-            body = '\n'.join(items)
-        md.append('### %s %s\n\n%s' % (sec['emoji'], sec['title']['en'], body))
+                            'note': entry.get('note'),
+                            'repo': repo, 'k': k})
+        # in the README the note of a project is written in its card, and
+        # the card beside it in the row of two is as tall; the personal page
+        # shows the plain cards with the notes under them, with their links
+        items = []
+        for j, e in enumerate(entries):
+            pair = entries[j - j % 2:j - j % 2 + 2]
+            if not any(x['note'] for x in pair):
+                items.append(picture(e['url'], e['card'], e['name'], 400))
+                continue
+            n = e['note']
+            text = n['en'].replace('{who}', n.get('who') or '') if n else None
+            write_themes(root, e['card'] + '-readme',
+                         lambda theme, e=e, text=text: card(
+                             e['repo'], theme, e['k'], kind, text, True))
+            items.append(picture(e['url'], e['card'] + '-readme',
+                                 e['name'], 400))
+        md.append('### %s %s\n\n%s' % (sec['emoji'], sec['title']['en'],
+                                      '\n'.join(items)))
         data.append({'id': sec['id'], 'title': sec['title'],
                      'emoji': sec['emoji'],
-                     'repos': entries})
+                     'repos': [{x: e[x] for x in ('name', 'url', 'card',
+                                                  'note')} for e in entries]})
     return '\n\n'.join(md), data
 
 
