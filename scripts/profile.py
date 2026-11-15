@@ -408,14 +408,22 @@ def software(root):
             entries.append({'name': repo['name'], 'url': repo['url'],
                             'card': 'assets/cards/' + slug,
                             'note': entry.get('note')})
-        # the notes of the cards, in English and above them, {who} as a link
-        notes = ['**%s**: %s' % (e['name'], e['note']['en'].replace(
-                     '{who}', '[%s](%s)' % (e['note'].get('who'),
-                                            e['note'].get('url'))))
-                 for e in entries if e['note']]
-        md.append('### %s %s\n\n%s%s' % (sec['emoji'], sec['title']['en'],
-                                          ''.join(n + '\n\n' for n in notes),
-                                          '\n'.join(items)))
+        # a section with notes is a table of two cards a row, each note
+        # under its card as on the personal page, {who} as a link
+        if any(e['note'] for e in entries):
+            def cell(item, e):
+                n = e['note']
+                who = '<a href="%s">%s</a>' % (n.get('url'), n.get('who')) \
+                    if n else ''
+                note = '<br>' + n['en'].replace('{who}', who) if n else ''
+                return '<td valign="top" width="50%%">%s%s</td>' % (item, note)
+            cells = [cell(i, e) for i, e in zip(items, entries)]
+            body = '<table>\n%s\n</table>' % '\n'.join(
+                '<tr>%s</tr>' % ''.join(cells[j:j + 2])
+                for j in range(0, len(cells), 2))
+        else:
+            body = '\n'.join(items)
+        md.append('### %s %s\n\n%s' % (sec['emoji'], sec['title']['en'], body))
         data.append({'id': sec['id'], 'title': sec['title'],
                      'emoji': sec['emoji'],
                      'repos': entries})
