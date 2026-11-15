@@ -282,14 +282,12 @@ def frame(w, h, c, k, kind, label):
     return out
 
 
-def card(repo, theme, k=0, kind='projects', note=None, tall=False):
+def card(repo, theme, k=0, kind='projects'):
     """A card of a repository, in the layout of the pinned ones: the owner
     before the name for a repository of another, the description as
-    GitHub has it; a main project has a wider accent. The cards of the
-    README may be taller, to hold the note of the project at the bottom
-    (or to stand as tall as the card beside them)."""
+    GitHub has it; a main project has a wider accent."""
     c = colors(theme, kind)
-    w, h = 400, 146 if tall else 120
+    w, h = 400, 120
     out = frame(w, h, c, k, kind, repo['name'])
     out.append('<path transform="translate(16,16)" fill="%s" d="%s"/>'
                % (c['muted'], ICON_REPO))
@@ -307,9 +305,6 @@ def card(repo, theme, k=0, kind='projects', note=None, tall=False):
                    % (54 + 18 * i, c['muted'], escape(line)))
     out += footer(16, 100, c, repo['language'],
                   ((ICON_STAR, repo['stars']), (ICON_FORK, repo['forks'])))
-    if note:
-        out.append('<text x="16" y="129" font-size="12" font-style="italic" '
-                   'fill="%s">%s</text>' % (c['link'], escape(note)))
     out += ['</g>', '</svg>']
     return '\n'.join(out) + '\n'
 
@@ -410,30 +405,15 @@ def software(root):
                          lambda theme: card(repo, theme, k, kind))
             entries.append({'name': repo['name'], 'url': repo['url'],
                             'card': 'assets/cards/' + slug,
-                            'note': entry.get('note'),
-                            'repo': repo, 'k': k})
-        # in the README the note of a project is written in its card, and
-        # the card beside it in the row of two is as tall; the personal page
-        # shows the plain cards with the notes under them, with their links
-        items = []
-        for j, e in enumerate(entries):
-            pair = entries[j - j % 2:j - j % 2 + 2]
-            if not any(x['note'] for x in pair):
-                items.append(picture(e['url'], e['card'], e['name'], 400))
-                continue
-            n = e['note']
-            text = n['en'].replace('{who}', n.get('who') or '') if n else None
-            write_themes(root, e['card'] + '-readme',
-                         lambda theme, e=e, text=text: card(
-                             e['repo'], theme, e['k'], kind, text, True))
-            items.append(picture(e['url'], e['card'] + '-readme',
-                                 e['name'], 400))
+                            'note': entry.get('note')})
+        # the README shows the cards only; the notes are on the personal page
+        items = [picture(e['url'], e['card'], e['name'], 400)
+                 for e in entries]
         md.append('### %s %s\n\n%s' % (sec['emoji'], sec['title']['en'],
                                       '\n'.join(items)))
         data.append({'id': sec['id'], 'title': sec['title'],
                      'emoji': sec['emoji'],
-                     'repos': [{x: e[x] for x in ('name', 'url', 'card',
-                                                  'note')} for e in entries]})
+                     'repos': entries})
     return '\n\n'.join(md), data
 
 
