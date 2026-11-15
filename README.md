@@ -5,13 +5,10 @@
 
 **aima-python**: Maintainer, with [P. Norvig](https://norvig.com/), since 2019.
 
-**opt-playground**: Interactive pages on optimization algorithms, primal and dual side by side, at [dmeoli.github.io/opt-playground](https://dmeoli.github.io/opt-playground/).
-
 **qpsolvers**: Contributor since 2020, and co-author of its citation.
 
 <a href="https://github.com/SMSpp-Project/smspp-project"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/SMSpp-Project-smspp-project-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/cards/SMSpp-Project-smspp-project-light.svg"><img alt="smspp-project" src="assets/cards/SMSpp-Project-smspp-project-auto.svg" width="400"></picture></a>
 <a href="https://github.com/aimacode/aima-python"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/aimacode-aima-python-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/cards/aimacode-aima-python-light.svg"><img alt="aima-python" src="assets/cards/aimacode-aima-python-auto.svg" width="400"></picture></a>
-<a href="https://github.com/dmeoli/opt-playground"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/opt-playground-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/cards/opt-playground-light.svg"><img alt="opt-playground" src="assets/cards/opt-playground-auto.svg" width="400"></picture></a>
 <a href="https://github.com/dmeoli/NeuroSAT"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/NeuroSAT-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/cards/NeuroSAT-light.svg"><img alt="NeuroSAT" src="assets/cards/NeuroSAT-auto.svg" width="400"></picture></a>
 <a href="https://github.com/dmeoli/GQSAT"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/GQSAT-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/cards/GQSAT-light.svg"><img alt="GQSAT" src="assets/cards/GQSAT-auto.svg" width="400"></picture></a>
 <a href="https://github.com/dmeoli/SicilianNMT"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/cards/SicilianNMT-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/cards/SicilianNMT-light.svg"><img alt="SicilianNMT" src="assets/cards/SicilianNMT-auto.svg" width="400"></picture></a>
