@@ -25,6 +25,6 @@
 <rect class="b" style="animation-delay:0.70s" x="112" y="191" width="4.0" height="12" rx="2" fill="#7338a8"><title>CMake: 0.7%</title></rect>
 <text class="p" style="animation-delay:1.50s" x="122.0" y="200" fill="#59636e">0.7%</text>
 <text x="104" y="226" text-anchor="end" fill="#1f2328">Other</text>
-<rect class="b" style="animation-delay:0.80s" x="112" y="217" width="7.1" height="12" rx="2" fill="#7338a8"><title>Other: 1.8%</title></rect>
-<text class="p" style="animation-delay:1.60s" x="125.1" y="226" fill="#59636e">1.8%</text>
+<rect class="b" style="animation-delay:0.80s" x="112" y="217" width="7.3" height="12" rx="2" fill="#7338a8"><title>Other: 1.9%</title></rect>
+<text class="p" style="animation-delay:1.60s" x="125.3" y="226" fill="#59636e">1.9%</text>
 </svg>
