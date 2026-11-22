@@ -2,23 +2,23 @@
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif} text{font-size:12px}.b{transform-box:fill-box;transform-origin:left;animation:grow .9s ease-out both}.p{animation:show .4s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes draw{from{transform:scaleY(0)}to{transform:scaleY(1)}}@keyframes show{from{opacity:0}to{opacity:1}}@media (prefers-reduced-motion: reduce){*{animation:none!important}}.dark{display:none}@media (prefers-color-scheme: dark){.light{display:none}.dark{display:inline}}</style>
 <g class="light">
 <text x="104" y="18" text-anchor="end" fill="#1f2328">C++</text>
-<rect class="b" style="animation-delay:0.00s" x="112" y="9" width="312.0" height="12" rx="2" fill="#7338a8"><title>C++: 80.1%</title></rect>
-<text class="p" style="animation-delay:0.80s" x="430.0" y="18" fill="#59636e">80.1%</text>
+<rect class="b" style="animation-delay:0.00s" x="112" y="9" width="312.0" height="12" rx="2" fill="#7338a8"><title>C++: 80.3%</title></rect>
+<text class="p" style="animation-delay:0.80s" x="430.0" y="18" fill="#59636e">80.3%</text>
 <text x="104" y="44" text-anchor="end" fill="#1f2328">TeX</text>
-<rect class="b" style="animation-delay:0.10s" x="112" y="35" width="27.2" height="12" rx="2" fill="#7338a8"><title>TeX: 7.0%</title></rect>
-<text class="p" style="animation-delay:0.90s" x="145.2" y="44" fill="#59636e">7.0%</text>
+<rect class="b" style="animation-delay:0.10s" x="112" y="35" width="26.8" height="12" rx="2" fill="#7338a8"><title>TeX: 6.9%</title></rect>
+<text class="p" style="animation-delay:0.90s" x="144.8" y="44" fill="#59636e">6.9%</text>
 <text x="104" y="70" text-anchor="end" fill="#1f2328">Python</text>
-<rect class="b" style="animation-delay:0.20s" x="112" y="61" width="19.9" height="12" rx="2" fill="#7338a8"><title>Python: 5.1%</title></rect>
-<text class="p" style="animation-delay:1.00s" x="137.9" y="70" fill="#59636e">5.1%</text>
+<rect class="b" style="animation-delay:0.20s" x="112" y="61" width="19.6" height="12" rx="2" fill="#7338a8"><title>Python: 5.0%</title></rect>
+<text class="p" style="animation-delay:1.00s" x="137.6" y="70" fill="#59636e">5.0%</text>
 <text x="104" y="96" text-anchor="end" fill="#1f2328">Prolog</text>
-<rect class="b" style="animation-delay:0.30s" x="112" y="87" width="8.9" height="12" rx="2" fill="#7338a8"><title>Prolog: 2.3%</title></rect>
-<text class="p" style="animation-delay:1.10s" x="126.9" y="96" fill="#59636e">2.3%</text>
+<rect class="b" style="animation-delay:0.30s" x="112" y="87" width="8.8" height="12" rx="2" fill="#7338a8"><title>Prolog: 2.3%</title></rect>
+<text class="p" style="animation-delay:1.10s" x="126.8" y="96" fill="#59636e">2.3%</text>
 <text x="104" y="122" text-anchor="end" fill="#1f2328">Roff</text>
-<rect class="b" style="animation-delay:0.40s" x="112" y="113" width="4.3" height="12" rx="2" fill="#7338a8"><title>Roff: 1.1%</title></rect>
-<text class="p" style="animation-delay:1.20s" x="122.3" y="122" fill="#59636e">1.1%</text>
+<rect class="b" style="animation-delay:0.40s" x="112" y="113" width="4.2" height="12" rx="2" fill="#7338a8"><title>Roff: 1.1%</title></rect>
+<text class="p" style="animation-delay:1.20s" x="122.2" y="122" fill="#59636e">1.1%</text>
 <text x="104" y="148" text-anchor="end" fill="#1f2328">CLIPS</text>
-<rect class="b" style="animation-delay:0.50s" x="112" y="139" width="4.0" height="12" rx="2" fill="#7338a8"><title>CLIPS: 1.0%</title></rect>
-<text class="p" style="animation-delay:1.30s" x="122.0" y="148" fill="#59636e">1.0%</text>
+<rect class="b" style="animation-delay:0.50s" x="112" y="139" width="4.0" height="12" rx="2" fill="#7338a8"><title>CLIPS: 0.9%</title></rect>
+<text class="p" style="animation-delay:1.30s" x="122.0" y="148" fill="#59636e">0.9%</text>
 <text x="104" y="174" text-anchor="end" fill="#1f2328">SAS</text>
 <rect class="b" style="animation-delay:0.60s" x="112" y="165" width="4.0" height="12" rx="2" fill="#7338a8"><title>SAS: 0.9%</title></rect>
 <text class="p" style="animation-delay:1.40s" x="122.0" y="174" fill="#59636e">0.9%</text>
@@ -31,23 +31,23 @@
 </g>
 <g class="dark">
 <text x="104" y="18" text-anchor="end" fill="#e6edf3">C++</text>
-<rect class="b" style="animation-delay:0.00s" x="112" y="9" width="312.0" height="12" rx="2" fill="#d4b9eb"><title>C++: 80.1%</title></rect>
-<text class="p" style="animation-delay:0.80s" x="430.0" y="18" fill="#b4b9c0">80.1%</text>
+<rect class="b" style="animation-delay:0.00s" x="112" y="9" width="312.0" height="12" rx="2" fill="#d4b9eb"><title>C++: 80.3%</title></rect>
+<text class="p" style="animation-delay:0.80s" x="430.0" y="18" fill="#b4b9c0">80.3%</text>
 <text x="104" y="44" text-anchor="end" fill="#e6edf3">TeX</text>
-<rect class="b" style="animation-delay:0.10s" x="112" y="35" width="27.2" height="12" rx="2" fill="#d4b9eb"><title>TeX: 7.0%</title></rect>
-<text class="p" style="animation-delay:0.90s" x="145.2" y="44" fill="#b4b9c0">7.0%</text>
+<rect class="b" style="animation-delay:0.10s" x="112" y="35" width="26.8" height="12" rx="2" fill="#d4b9eb"><title>TeX: 6.9%</title></rect>
+<text class="p" style="animation-delay:0.90s" x="144.8" y="44" fill="#b4b9c0">6.9%</text>
 <text x="104" y="70" text-anchor="end" fill="#e6edf3">Python</text>
-<rect class="b" style="animation-delay:0.20s" x="112" y="61" width="19.9" height="12" rx="2" fill="#d4b9eb"><title>Python: 5.1%</title></rect>
-<text class="p" style="animation-delay:1.00s" x="137.9" y="70" fill="#b4b9c0">5.1%</text>
+<rect class="b" style="animation-delay:0.20s" x="112" y="61" width="19.6" height="12" rx="2" fill="#d4b9eb"><title>Python: 5.0%</title></rect>
+<text class="p" style="animation-delay:1.00s" x="137.6" y="70" fill="#b4b9c0">5.0%</text>
 <text x="104" y="96" text-anchor="end" fill="#e6edf3">Prolog</text>
-<rect class="b" style="animation-delay:0.30s" x="112" y="87" width="8.9" height="12" rx="2" fill="#d4b9eb"><title>Prolog: 2.3%</title></rect>
-<text class="p" style="animation-delay:1.10s" x="126.9" y="96" fill="#b4b9c0">2.3%</text>
+<rect class="b" style="animation-delay:0.30s" x="112" y="87" width="8.8" height="12" rx="2" fill="#d4b9eb"><title>Prolog: 2.3%</title></rect>
+<text class="p" style="animation-delay:1.10s" x="126.8" y="96" fill="#b4b9c0">2.3%</text>
 <text x="104" y="122" text-anchor="end" fill="#e6edf3">Roff</text>
-<rect class="b" style="animation-delay:0.40s" x="112" y="113" width="4.3" height="12" rx="2" fill="#d4b9eb"><title>Roff: 1.1%</title></rect>
-<text class="p" style="animation-delay:1.20s" x="122.3" y="122" fill="#b4b9c0">1.1%</text>
+<rect class="b" style="animation-delay:0.40s" x="112" y="113" width="4.2" height="12" rx="2" fill="#d4b9eb"><title>Roff: 1.1%</title></rect>
+<text class="p" style="animation-delay:1.20s" x="122.2" y="122" fill="#b4b9c0">1.1%</text>
 <text x="104" y="148" text-anchor="end" fill="#e6edf3">CLIPS</text>
-<rect class="b" style="animation-delay:0.50s" x="112" y="139" width="4.0" height="12" rx="2" fill="#d4b9eb"><title>CLIPS: 1.0%</title></rect>
-<text class="p" style="animation-delay:1.30s" x="122.0" y="148" fill="#b4b9c0">1.0%</text>
+<rect class="b" style="animation-delay:0.50s" x="112" y="139" width="4.0" height="12" rx="2" fill="#d4b9eb"><title>CLIPS: 0.9%</title></rect>
+<text class="p" style="animation-delay:1.30s" x="122.0" y="148" fill="#b4b9c0">0.9%</text>
 <text x="104" y="174" text-anchor="end" fill="#e6edf3">SAS</text>
 <rect class="b" style="animation-delay:0.60s" x="112" y="165" width="4.0" height="12" rx="2" fill="#d4b9eb"><title>SAS: 0.9%</title></rect>
 <text class="p" style="animation-delay:1.40s" x="122.0" y="174" fill="#b4b9c0">0.9%</text>
